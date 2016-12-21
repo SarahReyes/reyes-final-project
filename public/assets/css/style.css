@@ -1,0 +1,27 @@
+/*
+COLORS:
+#FFFFFF - white
+#C7C7C7 - light gray
+#FEDA6A - yellow
+#4669D5 - blue
+#353535 - dark grey
+
+FONTS:
+font-family: 'Rubik Mono One', sans-serif; - big blocky
+font-family: 'Mandali', sans-serif; - thin rounded edges
+font-family: 'Shanti', sans-serif; - thin clean lines(like it)
+font-family: 'Assistant', sans-serif; - even thinner and cleaner, but not the "g" I like
+font-family: 'Pavanam', sans-serif; - WINNER - clean and thin, good "g"
+font-family: 'Chonburi', cursive; - 50s fat font with thin partials
+font-family: 'Bowlby One', cursive; - fat and cartoonish
+*/
+
+body {
+	font-family: 'Chonburi', cursive;
+}
+
+#movie-search {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

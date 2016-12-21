@@ -22,7 +22,7 @@ app.use(bodyParser.json({ type: "application/vnd.api+json" }));
 app.use(express.static("./public"));
 
 //------- MongoDB configuration -------//
-mongoose.connect("");
+mongoose.connect("mongodb://sarahreyes:root123@ds139448.mlab.com:39448/heroku_vdxsvx9p");
 var db = mongoose.connection;
 
 db.on("error", function(err) {
@@ -33,3 +33,17 @@ db.once("open", function() {
   console.log("Mongoose connection successful.");
 });
 //------------------------------------//
+
+//--- routes ---//
+app.get("/", function(req, res) {
+	// test that the port is working
+  	// res.send("Hey World!");
+  	res.sendFile(__dirname + "/public/index.html");
+});
+
+//--------------//
+
+// start the express server
+app.listen(PORT, function() {
+  console.log("App listening on PORT: " + PORT);
+});
