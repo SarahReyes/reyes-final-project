@@ -4,6 +4,7 @@ COLORS:
 #C7C7C7 - light gray
 #FEDA6A - yellow
 #4669D5 - blue
+#263B7C - dark blue click
 #353535 - dark grey
 
 FONTS:
@@ -16,12 +17,34 @@ font-family: 'Chonburi', cursive; - 50s fat font with thin partials
 font-family: 'Bowlby One', cursive; - fat and cartoonish
 */
 
-body {
-	font-family: 'Chonburi', cursive;
+body, html {
+	font-family: 'Pavanam', sans-serif;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    display: table;
 }
-
-#movie-search {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+body {
+    display: table-cell;
+    vertical-align: middle;
+}
+#movie-search-container{
+    display:table;/* shrinks to fit content */
+    margin:auto;
+}
+/*when user types in the input*/
+input {
+	color: #353535;
+	font-size: 24px;
+}
+input[type=text].valid {
+	border-bottom: 1px solid #4669D5;
+    box-shadow: 0 1px 0 0 #4669D5;
+}
+.btn, .btn-large {
+	background-color: #4669D5;
+}
+.btn:hover, .btn-large:hover {
+    background-color: #263B7C;
 }
