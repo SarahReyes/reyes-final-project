@@ -1,7 +1,10 @@
 // server dependencies
+
 var express = require("express");
 var bodyParser = require("body-parser");
 var logger = require("morgan");
+// mLab key connection
+var mlabkey = require('./.setenv.js');
 var mongoose = require("mongoose");
 
 // require Search schema
@@ -22,7 +25,7 @@ app.use(bodyParser.json({ type: "application/vnd.api+json" }));
 app.use(express.static("./public"));
 
 //------- MongoDB configuration -------//
-mongoose.connect("mongodb://sarahreyes:root123@ds139448.mlab.com:39448/heroku_vdxsvx9p");
+mongoose.connect(process.env.mlabkey);
 var db = mongoose.connection;
 
 db.on("error", function(err) {
@@ -32,6 +35,8 @@ db.on("error", function(err) {
 db.once("open", function() {
   console.log("Mongoose connection successful.");
 });
+
+console.log("process.env: " + process.env);
 //------------------------------------//
 
 //--- routes ---//
