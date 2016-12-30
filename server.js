@@ -3,9 +3,14 @@
 var express = require("express");
 var bodyParser = require("body-parser");
 var logger = require("morgan");
-// mLab key connection
-var mlabkey = require('./.setenv.js');
+
+// if we're not in production, then load the .setenv.js file
+if (!process.env.NODE_ENV) {
+	require('./.setenv.js');
+}
+
 var mongoose = require("mongoose");
+var objectValues = require("object-values");
 
 // require Search schema
 var Search = require("./models/search");
@@ -25,7 +30,7 @@ app.use(bodyParser.json({ type: "application/vnd.api+json" }));
 app.use(express.static("./public"));
 
 //------- MongoDB configuration -------//
-mongoose.connect(process.env.mlabkey);
+mongoose.connect(process.env.MONGODB_URI);
 var db = mongoose.connection;
 
 db.on("error", function(err) {
@@ -35,8 +40,8 @@ db.on("error", function(err) {
 db.once("open", function() {
   console.log("Mongoose connection successful.");
 });
-
-console.log("process.env: " + process.env);
+// check to see that our .setenv.js file is being read
+console.log("****process.env VALUES: " + objectValues(process.env) + "****");
 //------------------------------------//
 
 //--- routes ---//
