@@ -1,23 +1,26 @@
 
-// var axios = require('axios');
-// // amazon web services needed for connecting heroku saved api keys
-// var AWS = require('aws-sdk');
-//
-// // configure the region
-// AWS.config.region = 'us-east-1';
-// // access the API key stored with Heroku
-// AWS.config.accessKeyId = process.env.FANDANGO_KEY;
-// // access the API secret stored with Heroku
-// AWS.config.secretAccessKey = process.env.FANDANGO_SECRET;
-//
-// var fandangoAPI = new AWS.fandangoAPI();
+// test that this file is connected
+console.log("***http-helper file is connected***");
+
+var axios = require('axios');
+
+if (!process.env.NODE_ENV) {
+	require("../../../.setenv.js");
+}
+
+var movieDbKey = process.env.MOVIE_DB_KEY;
 
 var helper = {
-	runQuery: function() {
-
-		// var queryURL = "http://api.fandango.com/v1?op=" + theatersbypostalcodesearch&78727 +
-		// 	"&apikey=" + AWS.config.accessKeyId + "&sig=" + AWS.config.secretAccessKey;
-		var queryURL = "https://api.themoviedb.org/3/movie/76341?api_key=" + api_key;
-		console.log(queryURL);
+	runQuery: function(movieToSearch) {
+		var queryURL = "https://api.themoviedb.org/3/search/movie?api_key=" + movieDbKey +
+					   "&language=en-US&query=" + movieToSearch + "&include_adult=false";
+		return axios.get(queryURL).then(function(response){
+			if (response.results[0]) {
+				return response.results[0];
+			}
+			return "";
+		});
 	}
 };
+console.log("\n***MOVIE QUERY RESULT:" + helper.runQuery() + "***\n");
+module.exports = helper;

@@ -45,11 +45,13 @@ console.log("****process.env VALUES: " + objectValues(process.env) + "****");
 //------------------------------------//
 
 //--- routes ---//
+// load the index page
 app.get("/", function(req, res) {
 	// test that the port is working
   	// res.send("Hey World!");
   	res.sendFile(__dirname + "/public/index.html");
 });
+// load search results page
 
 //--------------//
 

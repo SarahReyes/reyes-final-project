@@ -33,7 +33,7 @@ body {
     display:table;/* shrinks to fit content */
     margin:auto;
 }
-/*when user types in the input*/
+/*when user types in the move to search search*/
 input {
 	color: #353535;
 	font-size: 24px;
@@ -47,4 +47,12 @@ input[type=text].valid {
 }
 .btn:hover, .btn-large:hover {
     background-color: #263B7C;
+}
+.input-field input[type=text]:focus {
+	color: #4669D5;
+  	border-bottom: 1px solid #000;
+  	box-shadow: 0 1px 0 0 #000;
+}
+.validate {
+	color: #263B7C;
 }
