@@ -24,7 +24,8 @@ var Results = React.createClass({
 				<div className="row">
 					<div className="col s12 m4 l3">
 						{/* side bar goes here */}
-						<h3>here is some sidebar info</h3>
+						<h1>Movie:</h1>
+						<p>{this.props.movie}</p>
 					</div>
 					<div className="col s12 m8 l9">
 						{/* main content */}

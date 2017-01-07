@@ -25,6 +25,14 @@ var Main = React.createClass({
 		this.setState({inputValue: this.state.inputValue});
 		console.log("Movie name entered is: " + this.state.inputValue);
 	},
+	ajaxCall: function() {
+		helper.runQuery(this.state.inputValue).then(function(data) {
+	  		if (data !== this.state.results) {
+				console.log("Movie", data);
+				this.setState({ results: data });
+			}
+		});
+	},
 	render: function() {
 		return (
 			<div className="container" id="movie-search-container">
