@@ -5,32 +5,24 @@ var ReactDOM = require('react-dom');
 // require children Components
 var Results = require('./children/Results');
 
-var helper = require("./utils/http-helper");
+var movieDb = require("./utils/movie-db");
 
 var Main = React.createClass({
-	// set the initial state so that the inputValue is empty
+	// set the initial state so that the movieToSearch is empty
 	getInitialState: function() {
-		return {inputValue: ""};
+		return {movieToSearch: ""};
 	},
 	// get the value of the user input
 	handleChange: function(event) {
-		this.setState({inputValue: event.target.value});
+		this.setState({movieToSearch: event.target.value});
 	},
 	// onClick function
 	handleClick: function(click) {
-		// set it so that the user needs to click the button, and not hit enter
-		click.preventDefault();
-		// give the user inputValue to the parent
+		// ***TEST*** that we're getting the value of the user input
+		console.log("Movie being searched: " + this.state.movieToSearch);
 
-		this.setState({inputValue: this.state.inputValue});
-		console.log("Movie name entered is: " + this.state.inputValue);
-	},
-	ajaxCall: function() {
-		helper.runQuery(this.state.inputValue).then(function(data) {
-	  		if (data !== this.state.results) {
-				console.log("Movie", data);
-				this.setState({ results: data });
-			}
+		movieDb.movieQuery(this.state.movieToSearch).then(function(data){
+			console.log(data);
 		});
 	},
 	render: function() {
