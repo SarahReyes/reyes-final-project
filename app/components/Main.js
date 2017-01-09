@@ -28,11 +28,14 @@ var Main = React.createClass({
 	render: function() {
 		return (
 			<div className="container" id="movie-search-container">
+				<div className="row">
+					<h1>roughcut</h1>
+				</div>
 				<div className="row" id="movie-search-row">
 					<form className="col s12" id="movie-search-form" onSubmit={this.handleClick}>
 							<div className="input-field col s12">
 								<input
-									value={this.state.inputValue}
+									value={this.state.movieToSearch}
 									type="text"
 									placeholder="search for a movie"
 									id="movie-search"
@@ -52,14 +55,6 @@ var Main = React.createClass({
 				</div>
 			</div>
 		);
-	},
-	updateInputValue: function(click) {
-		this.setState({inputValue: click.target.value});
-		// test the onClick
-		console.log("I clicked the search button");
-		// show the Results page
-		console.log("word searched is: " + this.state.inputValue);
-
-	},
+	}
 });
 module.exports = Main;

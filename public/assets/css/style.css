@@ -8,18 +8,15 @@ COLORS:
 #353535 - dark grey
 
 FONTS:
-font-family: 'Rubik Mono One', sans-serif; - big blocky
-font-family: 'Mandali', sans-serif; - thin rounded edges
-font-family: 'Shanti', sans-serif; - thin clean lines(like it)
-font-family: 'Assistant', sans-serif; - even thinner and cleaner, but not the "g" I like
-font-family: 'Pavanam', sans-serif; - WINNER - clean and thin, good "g"
-font-family: 'Chonburi', cursive; - 50s fat font with thin partials
-font-family: 'Bowlby One', cursive; - fat and cartoonish
+font-family: 'Heebo', sans-serif; - thin, nice
+font-family: 'Yantramanav', sans-serif; - ok
+font-family: 'Work Sans', sans-serif; - no
+font-family: 'Josefin Sans', sans-serif; - winner
 */
 
 body, html {
-	font-family: 'Pavanam', sans-serif;
-    width: 100%;
+	font-family: 'Josefin Sans', sans-serif;
+	width: 100%;
     height: 100%;
     margin: 0;
     padding: 0;
@@ -32,6 +29,17 @@ body {
 #movie-search-container{
     display:table;/* shrinks to fit content */
     margin:auto;
+	border-radius: 2%;
+	background-color: #353535;
+	background: rgb(25, 25, 25);
+	background: rgba(25, 25, 25, .2);
+}
+/*app name*/
+#movie-search-container h1 {
+	font-size: 200px;
+	letter-spacing: 1px;
+	margin-bottom: 75px;
+	text-align: center;
 }
 /*when user types in the move to search search*/
 input {

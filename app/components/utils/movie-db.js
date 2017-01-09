@@ -1,6 +1,6 @@
 
 // ***TEST*** check to make sure the file is connected to Main.js
-// console.log("***http-helper file is connected***");
+console.log("***movie-db.js file is connected***");
 
 var axios = require('axios');
 
@@ -19,9 +19,7 @@ var movieDb = {
 			if (response.data.results[0]) {
 				return response.data;
 			}
-
 				return "";
-
 		});
 	}
 };
