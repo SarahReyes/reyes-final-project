@@ -18,6 +18,8 @@ var Search = require("./models/search");
 // create a new express app
 var app = express();
 
+app.use(require('./controllers'));
+
 // set the initial PORT
 var PORT = process.env.PORT || 3000;
 
@@ -41,19 +43,9 @@ db.once("open", function() {
   console.log("Mongoose connection successful.");
 });
 // check to see that our .setenv.js file is being read
-console.log("****process.env VALUES: " + objectValues(process.env) + "****");
+// console.log("****process.env VALUES: " + objectValues(process.env) + "****");
 //------------------------------------//
 
-//--- routes ---//
-// load the index page
-app.get("/", function(req, res) {
-	// test that the port is working
-  	// res.send("Hey World!");
-  	res.sendFile(__dirname + "/public/index.html");
-});
-// load search results page
-
-//--------------//
 
 // start the express server
 app.listen(PORT, function() {
