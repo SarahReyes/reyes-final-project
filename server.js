@@ -14,6 +14,8 @@ if (!process.env.NODE_ENV) {
 
 // connect to the model
 var Search = require("./models/Search");
+// connect to movie-db.js, API call generator
+var movieDb = require("./app/components/utils/movie-db.js");
 
 // create a new express app
 var app = express();
@@ -53,8 +55,10 @@ app.get("/", function(req, res) {
 });
 
 // on click, load teh results page
-app.get("/results", function(req, res){
-	
+app.get("/results", function(req, res) {
+	movieDb.movieQuery(this.state.movieToSearch).then(function(data){
+		console.log(data);
+	});
 });
 
 

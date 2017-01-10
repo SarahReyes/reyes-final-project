@@ -8,14 +8,12 @@ COLORS:
 #353535 - dark grey
 
 FONTS:
-font-family: 'Heebo', sans-serif; - thin, nice
-font-family: 'Yantramanav', sans-serif; - ok
-font-family: 'Work Sans', sans-serif; - no
-font-family: 'Josefin Sans', sans-serif; - winner
+font-family: 'Hind', sans-serif; - thick
+font-family: 'Josefin Sans', sans-serif; - thin
 */
 
 body, html {
-	font-family: 'Josefin Sans', sans-serif;
+	font-family: 'Hind', sans-serif;
 	width: 100%;
     height: 100%;
     margin: 0;
@@ -29,38 +27,41 @@ body {
 #movie-search-container{
     display:table;/* shrinks to fit content */
     margin:auto;
-	border-radius: 2%;
-	background-color: #353535;
-	background: rgb(25, 25, 25);
-	background: rgba(25, 25, 25, .2);
 }
 /*app name*/
 #movie-search-container h1 {
-	font-size: 200px;
+	/*font-size: 230px;*/
+	color: #FFFFFF;
 	letter-spacing: 1px;
-	margin-bottom: 75px;
+	margin-top: 30px;
 	text-align: center;
 }
-/*when user types in the move to search search*/
-input {
-	color: #353535;
-	font-size: 24px;
+/* label color */
+.input-field label {
+	font-family: 'Hind', sans-serif;
+	letter-spacing: 1px;
+	color: #FFFFFF;
 }
-input[type=text].valid {
-	border-bottom: 1px solid #4669D5;
-    box-shadow: 0 1px 0 0 #4669D5;
+/* label focus color */
+.input-field input[type=text]:focus + label {
+	font-family: 'Hind', sans-serif;
+    color: #FEDA6A;
 }
+/*search form line*/
+input[type=text] {
+	border-bottom: 3px solid #FFFFFF;
+}
+/*search form line focus*/
+input[type=text]:focus:not([readonly]) {
+	color: #FEDA6A;
+	border-bottom: 3px solid #FEDA6A;
+	box-shadow: none;
+}
+
+/*search button*/
 .btn, .btn-large {
 	background-color: #4669D5;
 }
 .btn:hover, .btn-large:hover {
     background-color: #263B7C;
-}
-.input-field input[type=text]:focus {
-	color: #4669D5;
-  	border-bottom: 1px solid #000;
-  	box-shadow: 0 1px 0 0 #000;
-}
-.validate {
-	color: #263B7C;
 }
