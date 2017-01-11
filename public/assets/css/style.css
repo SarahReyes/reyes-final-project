@@ -20,10 +20,7 @@ body, html {
     padding: 0;
     display: table;
 }
-body {
-    display: table-cell;
-    vertical-align: middle;
-}
+
 #movie-search-container{
     display:table;/* shrinks to fit content */
     margin:auto;

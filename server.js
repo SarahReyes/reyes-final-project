@@ -54,7 +54,7 @@ app.get("/", function(req, res) {
   	res.sendFile(__dirname + "./public/index.html");
 });
 
-// on click, load teh results page
+// on click, load the results page
 app.get("/results", function(req, res) {
 	movieDb.movieQuery(this.state.movieToSearch).then(function(data){
 		console.log(data);

@@ -3,54 +3,65 @@ var React = require('react');
 var ReactDOM = require('react-dom');
 
 // require children Components
+var Search = require('./children/Search');
 var Results = require('./children/Results');
 
+// require our AJAX request code to the MovieDB API
 var movieDb = require("./utils/movie-db");
 
 var Main = React.createClass({
-	// set the initial state so that the movieToSearch is empty
 	getInitialState: function() {
-		return {movieToSearch: ""};
+      return { movieToSearch: "", results: "" };
+    },
+	// This function allows childrens to update the parent.
+    movieToSearch: function(movieToSearch) {
+      this.setState({ movieToSearch: movieToSearch });
+    },
+	// when a search is entered
+	componentDidUpdate: function() {
+
+	  // run the query for the movie search
+	  movieDb.movieQuery(this.state.movieToSearch).then(function(data) {
+		if (data !== this.state.results) {
+		  console.log("Movie DATA: " + data);
+		  this.setState({ results: data });
+		}
+	  }.bind(this));
 	},
-	// get the value of the user input
-	handleChange: function(event) {
-		this.setState({movieToSearch: event.target.value});
-	},
-	// onClick function
-	handleClick: function(click) {
-		// ***TEST*** that we're getting the value of the user input
-		console.log("Movie being searched: " + this.state.movieToSearch);
-		// moved this to the router
-		// movieDb.movieQuery(this.state.movieToSearch).then(function(data){
-		// 	console.log(data);
-		// });
-	},
+	// movieSearch: function(){
+	// 	// ***TEST*** that we're getting the value of the user input
+	// 	console.log("Movie being searched: " + this.state.movieToSearch);
+	// 	// query the movieToSearch
+	// 	movieDb.movieQuery(this.state.movieToSearch).then(function(data){
+	// 		console.log(data);
+	// 	});
+	// },
 	render: function() {
 		return (
-
-			<div className="container" id="movie-search-container">
-				<div className="row">
-					<h1>roughcut</h1>
+			<div className="container">
+				<nav>
+			      <div className="nav-wrapper">
+			        <a href="#" className="brand-logo">Logo</a>
+			        <ul id="nav-mobile" className="right hide-on-med-and-down">
+			          <li><a href="sass.html">Sass</a></li>
+			          <li><a href="badges.html">Components</a></li>
+			          <li><a href="collapsible.html">JavaScript</a></li>
+			        </ul>
+			      </div>
+			    </nav>
+				<div className="row" id="search-row">
+					<div className="col s12">
+		                <Search movieToSearch={this.movieToSearch} />
+		            </div>
 				</div>
-				<div className="row" id="movie-search-row">
-					<form className="col s12" id="movie-search-form" onSubmit={this.handleClick}>
-							<div className="input-field col s12">
-								<input
-									value={this.state.movieToSearch}
-									type="text"
-									id="movie-search"
-									className="validate"
-									onChange={this.handleChange}
-								/>
-								<label htmlFor="movie-search">movie name</label>
-								<button type="submit" className="waves-effect waves-light btn">
-								<i className="material-icons right">theaters</i>
-									search
-								</button>
-							</div>
-					</form>
+				<div className="row" id="results-row">
+					<div className="col s12">
+						<Results movie={this.state.results} />
+					</div>
 				</div>
 			</div>
+
+
 		);
 	}
 });

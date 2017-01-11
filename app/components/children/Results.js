@@ -5,31 +5,10 @@ var Results = React.createClass({
     render: function() {
         return (
 			<div className="container">
-	            <nav>
-	            	<div className="nav-wrapper">
-		                <a href="#" className="brand-logo">EHUB</a>
-		                <ul id="nav-mobile" className="right hide-on-med-and-down">
-		                    <li>
-		                        <a href="sass.html">Sass</a>
-		                    </li>
-		                    <li>
-		                        <a href="badges.html">Components</a>
-		                    </li>
-		                    <li>
-		                        <a href="collapsible.html">JavaScript</a>
-		                    </li>
-		                </ul>
-	            	</div>
-	        	</nav>
 				<div className="row">
-					<div className="col s12 m4 l3">
-						{/* side bar goes here */}
-						<h1>Movie:</h1>
+					<div className="col s12">
+						<h1>Movie Results:</h1>
 						<p>{this.props.movie}</p>
-					</div>
-					<div className="col s12 m8 l9">
-						{/* main content */}
-						<h2>here is some main content info</h2>
 					</div>
 				</div>
 			</div>
@@ -37,3 +16,4 @@ var Results = React.createClass({
     }
 
 });
+module.exports = Results;
