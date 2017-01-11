@@ -19,7 +19,6 @@ var Main = React.createClass({
     },
 	// when a search is entered
 	componentDidUpdate: function() {
-
 	  // run the query for the movie search
 	  movieDb.movieQuery(this.state.movieToSearch).then(function(data) {
 		if (data !== this.state.results) {
@@ -28,20 +27,16 @@ var Main = React.createClass({
 		}
 	  }.bind(this));
 	},
-	// movieSearch: function(){
-	// 	// ***TEST*** that we're getting the value of the user input
-	// 	console.log("Movie being searched: " + this.state.movieToSearch);
-	// 	// query the movieToSearch
-	// 	movieDb.movieQuery(this.state.movieToSearch).then(function(data){
-	// 		console.log(data);
-	// 	});
-	// },
+	// This function allows childrens to update the parent.
+	movieSearch: function(movie) {
+	  this.setState({ movieToSearch: movie });
+	},
 	render: function() {
 		return (
 			<div className="container">
 				<nav>
 			      <div className="nav-wrapper">
-			        <a href="#" className="brand-logo">Logo</a>
+			        <a href="#" className="brand-logo">roughcut</a>
 			        <ul id="nav-mobile" className="right hide-on-med-and-down">
 			          <li><a href="sass.html">Sass</a></li>
 			          <li><a href="badges.html">Components</a></li>
@@ -51,7 +46,7 @@ var Main = React.createClass({
 			    </nav>
 				<div className="row" id="search-row">
 					<div className="col s12">
-		                <Search movieToSearch={this.movieToSearch} />
+		                <Search movieSearch={this.movieSearch} />
 		            </div>
 				</div>
 				<div className="row" id="results-row">
@@ -60,8 +55,6 @@ var Main = React.createClass({
 					</div>
 				</div>
 			</div>
-
-
 		);
 	}
 });

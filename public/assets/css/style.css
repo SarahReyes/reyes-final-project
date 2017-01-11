@@ -1,11 +1,12 @@
 /*
 COLORS:
-#FFFFFF - white
-#C7C7C7 - light gray
-#FEDA6A - yellow
-#4669D5 - blue
-#263B7C - dark blue click
-#353535 - dark grey
+#F44336 - primary red
+#D32F2F - dark primary red
+#FFC107 - accent yellow
+#212121 - primary text (almost black)
+#757575 - secondary text (gray)
+#BDBDBD - divider color (light gray)
+#FFFFFF - text/icons (white)
 
 FONTS:
 font-family: 'Hind', sans-serif; - thick
@@ -13,52 +14,57 @@ font-family: 'Josefin Sans', sans-serif; - thin
 */
 
 body, html {
-	font-family: 'Hind', sans-serif;
-	width: 100%;
-    height: 100%;
-    margin: 0;
-    padding: 0;
-    display: table;
+	font-family: 'Josefin Sans', sans-serif;
 }
-
-#movie-search-container{
-    display:table;/* shrinks to fit content */
-    margin:auto;
+.container {
+	width: 100%;
+}
+/*nav bar*/
+nav {
+	background-color: #F44336;
 }
 /*app name*/
 #movie-search-container h1 {
 	/*font-size: 230px;*/
-	color: #FFFFFF;
+	color: #212121;
 	letter-spacing: 1px;
 	margin-top: 30px;
 	text-align: center;
 }
-/* label color */
+/*input color*/
 .input-field label {
 	font-family: 'Hind', sans-serif;
 	letter-spacing: 1px;
-	color: #FFFFFF;
+	color: #212121;
 }
-/* label focus color */
+/*input focus color*/
 .input-field input[type=text]:focus + label {
 	font-family: 'Hind', sans-serif;
-    color: #FEDA6A;
+    color: #757575;
 }
 /*search form line*/
 input[type=text] {
-	border-bottom: 3px solid #FFFFFF;
+	font-family: 'Hind', sans-serif;
+	border-bottom: 3px solid #212121;
 }
 /*search form line focus*/
 input[type=text]:focus:not([readonly]) {
-	color: #FEDA6A;
-	border-bottom: 3px solid #FEDA6A;
+	font-family: 'Hind', sans-serif;
+	color: #757575;
+	border-bottom: 3px solid #757575;
 	box-shadow: none;
 }
 
 /*search button*/
 .btn, .btn-large {
-	background-color: #4669D5;
+	font-family: 'Hind', sans-serif;
+	background-color: #F44336;
 }
 .btn:hover, .btn-large:hover {
-    background-color: #263B7C;
+	font-family: 'Hind', sans-serif;
+    background-color: #D32F2F;
+}
+/*results row*/
+#results-row {
+	color: #212121;
 }

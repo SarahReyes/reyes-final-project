@@ -13,7 +13,7 @@ var Search = React.createClass({
 	// when a user submits
     handleSubmit: function(event) {
       // set the parent to have the search term
-      this.props.movieToSearch(this.state.movieToSearch);
+      this.props.movieSearch(this.state.movieToSearch);
       this.setState({ movieToSearch: "" });
 	  // test grabbing the value of the movie searched
 	  console.log("MOVIE THAT WAS SEARCHED: " + this.state.movieToSearch);
