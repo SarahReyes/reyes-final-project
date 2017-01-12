@@ -54,13 +54,19 @@ input[type=text]:focus:not([readonly]) {
 	border-bottom: 3px solid #757575;
 	box-shadow: none;
 }
-
+/*search form after clicking submit*/
+input[type=text].valid {
+	font-family: 'Hind', sans-serif;
+	color: #757575;
+	border-bottom: 3px solid #757575;
+	box-shadow: none;
+}
 /*search button*/
-.btn, .btn-large {
+.btn {
 	font-family: 'Hind', sans-serif;
 	background-color: #F44336;
 }
-.btn:hover, .btn-large:hover {
+.btn:hover, .btn:focus {
 	font-family: 'Hind', sans-serif;
     background-color: #D32F2F;
 }

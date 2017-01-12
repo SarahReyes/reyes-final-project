@@ -1,13 +1,14 @@
 
 // ***TEST*** check to make sure the file is connected to Main.js
 console.log("***movie-db.js file is connected***");
-
+// require axios
 var axios = require('axios');
 
 if (!process.env.NODE_ENV) {
 	require("../../../.setenv.js");
 }
 
+// save the API key for MovieDB in an environment variable
 var movieDbKey = process.env.MOVIE_DB_KEY;
 
 var movieDb = {
@@ -17,10 +18,13 @@ var movieDb = {
 		return axios.get(queryURL).then(function(response){
 
 			if (response.data.results[0]) {
+				// test the results data
+				console.log("API call data: " + response.data);
 				return response.data;
 			}
 			return "";
 		});
 	}
 };
+// export the API query code
 module.exports = movieDb;

@@ -48,18 +48,14 @@ db.once("open", function() {
 // console.log("****process.env VALUES: " + objectValues(process.env) + "****");
 //------------------------------------//
 
-// -------routes-------
+// -------routes------- //
 // load the index page
 app.get("/", function(req, res) {
   	res.sendFile(__dirname + "./public/index.html");
 });
 
-// on click, load the results page
-app.get("/results", function(req, res) {
-	movieDb.movieQuery(this.state.movieToSearch).then(function(data){
-		console.log(data);
-	});
-});
+
+// -------end routes------- //
 
 
 // start the express server

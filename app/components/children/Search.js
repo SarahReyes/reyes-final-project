@@ -1,22 +1,25 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
 
+
 var Search = React.createClass({
-	// set the initial state so that the movieToSearch is empty
+	// set a generic state associated with the text being searched for
 	getInitialState: function() {
-        return { movieToSearch: "" };
+        return { movie: "" };
     },
 	// get the value of the user input
 	handleChange: function(event) {
-		this.setState({ movieToSearch: event.target.value });
+		this.setState({ movie: event.target.value });
 	},
 	// when a user submits
     handleSubmit: function(event) {
-      // set the parent to have the search term
-      this.props.movieSearch(this.state.movieToSearch);
-      this.setState({ movieToSearch: "" });
-	  // test grabbing the value of the movie searched
-	  console.log("MOVIE THAT WAS SEARCHED: " + this.state.movieToSearch);
+	  // test grabbing the value of the movie searched after clicking the btn
+	  console.log("I CLICKED. MOVIE VALUE: " + this.state.movie);
+	  // prevent hitting enter for submit
+	  event.preventDefault();
+	  // set the parent to the movie searched
+	  this.props.setMovie(this.state.movie);
+	  this.setState({ movie: ""});
     },
 	render: function() {
 		return (
@@ -25,7 +28,7 @@ var Search = React.createClass({
 					<form className="col s12" id="movie-search-form" onSubmit={this.handleSubmit}>
 						<div className="input-field col s12">
 							<input
-								value={this.state.movieToSearch}
+								value={this.state.movie}
 								type="text"
 								id="movie-search"
 								className="validate"

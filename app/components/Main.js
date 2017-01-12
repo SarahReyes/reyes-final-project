@@ -1,8 +1,7 @@
-
+// require react
 var React = require('react');
-var ReactDOM = require('react-dom');
 
-// require children Components
+// require children components
 var Search = require('./children/Search');
 var Results = require('./children/Results');
 
@@ -10,26 +9,23 @@ var Results = require('./children/Results');
 var movieDb = require("./utils/movie-db");
 
 var Main = React.createClass({
+	// set the initial state
 	getInitialState: function() {
       return { movieToSearch: "", results: "" };
     },
-	// This function allows childrens to update the parent.
-    movieToSearch: function(movieToSearch) {
-      this.setState({ movieToSearch: movieToSearch });
-    },
-	// when a search is entered
+	// if a search is entered, update the component
 	componentDidUpdate: function() {
 	  // run the query for the movie search
 	  movieDb.movieQuery(this.state.movieToSearch).then(function(data) {
-		if (data !== this.state.results) {
-		  console.log("Movie DATA: " + data);
+		  console.log("Movie Results", data);
 		  this.setState({ results: data });
-		}
-	  }.bind(this));
+	});
 	},
-	// This function allows childrens to update the parent.
-	movieSearch: function(movie) {
+	// set the movieToSearch with the movie that was entered in the form
+	setMovie: function(movie) {
 	  this.setState({ movieToSearch: movie });
+	  // test that we are receiving the value of movie
+	  console.log("setMovie function value: " + movie);
 	},
 	render: function() {
 		return (
@@ -46,7 +42,7 @@ var Main = React.createClass({
 			    </nav>
 				<div className="row" id="search-row">
 					<div className="col s12">
-		                <Search movieSearch={this.movieSearch} />
+		                <Search setMovie={this.setMovie} />
 		            </div>
 				</div>
 				<div className="row" id="results-row">
