@@ -2,15 +2,19 @@ var React = require('react');
 var ReactDOM = require('react-dom');
 
 
+var movieDb = require("../utils/movie-db");
+
 var Search = React.createClass({
 	// set a generic state associated with the text being searched for
 	getInitialState: function() {
         return { movie: "" };
     },
+
 	// get the value of the user input
 	handleChange: function(event) {
 		this.setState({ movie: event.target.value });
 	},
+
 	// when a user submits
     handleSubmit: function(event) {
 	  // test grabbing the value of the movie searched after clicking the btn
@@ -18,9 +22,12 @@ var Search = React.createClass({
 	  // prevent hitting enter for submit
 	  event.preventDefault();
 	  // set the parent to the movie searched
-	  this.props.setMovie(this.state.movie);
+	  var the_movie = this.state.movie;
+	  this.props.searchForMovie(the_movie);
+	  this.props.setMovie(the_movie);
 	  this.setState({ movie: ""});
     },
+
 	render: function() {
 		return (
 			<div className="container"  id="movie-search-container">

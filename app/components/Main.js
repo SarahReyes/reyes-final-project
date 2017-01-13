@@ -10,23 +10,42 @@ var movieDb = require("./utils/movie-db");
 
 var Main = React.createClass({
 	// set the initial state
+
+	// this.componentDidUpdate = this.componentDidUpdate.bind(this);
+
 	getInitialState: function() {
-      return { movieToSearch: "", results: "" };
+        return { movieToSearch: "", results: "" };
     },
+
 	// if a search is entered, update the component
-	componentDidUpdate: function() {
-	  // run the query for the movie search
-	  movieDb.movieQuery(this.state.movieToSearch).then(function(data) {
-		  console.log("Movie Results", data);
-		  this.setState({ results: data });
-	});
+	searchForMovie: function(this_movie) {
+	    // run the query for the movie search
+		console.log("inside searchForMovie():");
+		console.log(this_movie);
+		console.log(this.state.movieToSearch);
+
+	  	movieDb.movieQuery(this_movie).then(function(data) {
+
+		  	console.log("Movie Results", data);
+		  	this.setState({ results: data.results[0].original_title });
+			console.log(this.state.results);
+
+		}.bind(this));
 	},
+
 	// set the movieToSearch with the movie that was entered in the form
 	setMovie: function(movie) {
-	  this.setState({ movieToSearch: movie });
-	  // test that we are receiving the value of movie
-	  console.log("setMovie function value: " + movie);
+
+		console.log("inside setMovie():");
+		console.log(movie);
+
+		this.setState({ movieToSearch: movie });
+		// console.log(this.state.movieToSearch);
+
+		// test that we are receiving the value of movie
+		console.log("setMovie function value: " + movie);
 	},
+
 	render: function() {
 		return (
 			<div className="container">
@@ -42,7 +61,7 @@ var Main = React.createClass({
 			    </nav>
 				<div className="row" id="search-row">
 					<div className="col s12">
-		                <Search setMovie={this.setMovie} />
+		                <Search setMovie={this.setMovie} searchForMovie={this.searchForMovie} />
 		            </div>
 				</div>
 				<div className="row" id="results-row">

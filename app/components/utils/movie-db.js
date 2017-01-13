@@ -13,6 +13,10 @@ var movieDbKey = process.env.MOVIE_DB_KEY;
 
 var movieDb = {
 	movieQuery: function(movieToSearch) {
+		console.log("key and movie before ajax:");
+		console.log(movieDbKey);
+		console.log(movieToSearch);
+
 		var queryURL = "https://api.themoviedb.org/3/search/movie?api_key=" + movieDbKey +
 					   "&language=en-US&query=" + movieToSearch + "&include_adult=false";
 		return axios.get(queryURL).then(function(response){
