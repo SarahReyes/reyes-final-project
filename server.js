@@ -12,8 +12,10 @@ if (!process.env.NODE_ENV) {
 	require('./.setenv.js');
 }
 
-// connect to the model
+// connect to the Search model
 var Search = require("./models/Search");
+// connect to the Login model
+var Login = require("./models/Login");
 // connect to movie-db.js, API call generator
 var movieDb = require("./app/components/utils/movie-db.js");
 
@@ -52,6 +54,14 @@ db.once("open", function() {
 // load the index page
 app.get("/", function(req, res) {
   	res.sendFile(__dirname + "./public/index.html");
+});
+// add new user login to database
+app.post("/login", function(req, res) {
+	Login.create({
+		username: req.body.username,
+		email: req.body.email,
+		password: req.body.password
+	});
 });
 
 

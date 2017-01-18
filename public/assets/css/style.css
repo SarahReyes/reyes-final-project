@@ -1,4 +1,4 @@
-h/*
+/*
 COLORS:
 #F44336 - primary red
 #D32F2F - dark primary red
@@ -19,17 +19,48 @@ body, html {
 .container {
 	width: 100%;
 }
+p {
+	margin: 10px;
+}
+a {
+	color: #FFFFFF;
+}
+h1 {
+	color: #FFFFFF;
+}
 /*nav bar*/
 nav {
 	background-color: #F44336;
 }
-/*app name*/
-#movie-search-container h1 {
-	/*font-size: 230px;*/
-	color: #212121;
-	letter-spacing: 1px;
-	margin-top: 30px;
+/*nav bar app name*/
+nav .brand-logo {
+    position: absolute;
+    color: #fff;
+    display: inline-block;
+    font-size: 2.1rem;
+    padding-left: 20px;
+    white-space: nowrap;
+}
+/*intro-row*/
+#intro-row {
+	font-size: 70px;
 	text-align: center;
+	background-color: #FFC107;
+	height: 100%;
+	margin-top: 75px;
+	color: #FFFFFF;
+}
+/*intro-row icons*/
+#row-icons {
+	font-size: 75px;
+	margin-top: 10px;
+	margin-bottom: 25px;
+	color: #FFFFFF;
+}
+/*movie search row*/
+#search-row {
+	height: 200px;
+	margin-top: 75px;
 }
 /*input color*/
 .input-field label {
@@ -38,24 +69,25 @@ nav {
 	color: #212121;
 }
 /*input focus color*/
-.input-field input[type=text]:focus + label {
+.input-field input[type=text]:focus + label, .input-field input[type=email]:focus + label, .input-field input[type=password]:focus + label {
 	font-family: 'Hind', sans-serif;
     color: #757575;
 }
+
 /*search form line*/
-input[type=text] {
+input[type=text], input[type=email], input[type=password] {
 	font-family: 'Hind', sans-serif;
 	border-bottom: 3px solid #212121;
 }
 /*search form line focus*/
-input[type=text]:focus:not([readonly]) {
+input[type=text]:focus:not([readonly]), input[type=email]:focus:not([readonly]), input[type=password]:focus:not([readonly]) {
 	font-family: 'Hind', sans-serif;
 	color: #757575;
 	border-bottom: 3px solid #757575;
 	box-shadow: none;
 }
 /*search form after clicking submit*/
-input[type=text].valid {
+input[type=text].valid, input[type=email].valid, input[type=password].valid {
 	font-family: 'Hind', sans-serif;
 	color: #757575;
 	border-bottom: 3px solid #757575;
@@ -72,5 +104,34 @@ input[type=text].valid {
 }
 /*results row*/
 #results-row {
-	color: #212121;
+	color: #FFFFFF;
+	height: 200px;
+	margin-bottom: 0px;
+}
+#results-data {
+	color: #FFFFFF;
+}
+/*share row*/
+#share-row {
+	background-color: #FFFFFF;
+	height: 250px;
+	margin-top: 75px;
+	margin-bottom: 75px;
+}
+/*footer*/
+footer.page-footer {
+    background-color: #F44336;
+}
+#footer-row {
+	margin-bottom: 0px;
+}
+/*icons in footer from font-awesome*/
+.fa {
+  color: #FFFFFF;
+}
+#footer-name {
+	padding-left: 15px;
+}
+#footer-icons {
+	padding-right: 15px;
 }
