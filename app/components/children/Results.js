@@ -18,7 +18,7 @@ var Results = React.createClass({
 							<a className="waves-effect waves-light btn-large btn"><i className="fa fa-floppy-o fa-2x" id="save-icon"></i>save</a>
 						</div>
 						<div className="row center-align" id="twitter-btn">
-							<a className="waves-effect waves-light btn-large btn" id="twitter-btn"><i className="fa fa-twitter fa-2x" id="twitter-icon"></i>share</a>
+							<a href="https://twitter.com/share" className="twitter-share-button waves-effect waves-light btn-large btn" id="twitter-btn" data-show-count="false"><i className="fa fa-twitter fa-2x" id="twitter-icon"></i>share</a><script async src="//platform.twitter.com/widgets.js" charSet="utf-8"></script>
 						</div>
 					</div>
 				</div>

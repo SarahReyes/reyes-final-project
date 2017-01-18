@@ -1,6 +1,4 @@
 
-// ***TEST*** check to make sure the file is connected to Main.js
-console.log("***movie-db.js file is connected***");
 // require axios
 var axios = require('axios');
 
