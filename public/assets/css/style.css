@@ -117,8 +117,11 @@ input[type=text].valid, input[type=email].valid, input[type=password].valid {
 	padding-left: 40px;
 	font-weight: bold;
 }
-#results-buttons {
-	padding: 25px;
+#save-icon {
+	padding-right: 10px;
+}
+#twitter-icon {
+	padding-right: 10px;
 }
 /*footer*/
 footer.page-footer {

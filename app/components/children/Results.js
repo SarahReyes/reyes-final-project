@@ -15,10 +15,10 @@ var Results = React.createClass({
 					</div>
 					<div className="col s6" id="results-buttons">
 						<div className="row center-align" id="save-btn">
-							<a className="waves-effect waves-light btn-large btn"><i className="fa fa-floppy-o fa-2x"></i>save</a>
+							<a className="waves-effect waves-light btn-large btn"><i className="fa fa-floppy-o fa-2x" id="save-icon"></i>save</a>
 						</div>
 						<div className="row center-align" id="twitter-btn">
-							<a className="waves-effect waves-light btn-large btn"><i className="fa fa-twitter fa-2x"></i>share</a>
+							<a className="waves-effect waves-light btn-large btn" id="twitter-btn"><i className="fa fa-twitter fa-2x" id="twitter-icon"></i>share</a>
 						</div>
 					</div>
 				</div>

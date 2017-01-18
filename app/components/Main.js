@@ -21,6 +21,10 @@ var Main = React.createClass({
 		  	this.setState({movieName: data.results[0].original_title});
 			this.setState({poster: data.results[0].poster_path});
 			this.setState({overview: data.results[0].overview});
+			// after we receive the result, post the search to the database
+			movieDb.postSearch(this.state.movieName).then(function() {
+			  console.log("Database Updated!");
+			}.bind(this));
 		}.bind(this));
 	},
 	// set the movieName with the movie that was entered in the form

@@ -28,6 +28,10 @@ var movieDb = {
 	// This function posts new searches to our database.
 	postLogin: function(username, email, password) {
   		return axios.post("/login", {username: username, email: email, password: password});
+	},
+	// This function posts new searches to our database.
+	postSearch: function(movieToSearch) {
+  		return axios.post("/api", { movieName: movieToSearch });
 	}
 };
 // export the API query code
