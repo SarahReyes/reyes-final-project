@@ -28,6 +28,10 @@ a {
 h1 {
 	color: #FFFFFF;
 }
+img {
+	border: 0px;
+	box-shadow: none;
+}
 /*nav bar*/
 nav {
 	background-color: #F44336;
@@ -108,15 +112,13 @@ input[type=text].valid, input[type=email].valid, input[type=password].valid {
 	height: 200px;
 	margin-bottom: 0px;
 }
-#results-data {
+#movie-data {
 	color: #FFFFFF;
+	padding-left: 40px;
+	font-weight: bold;
 }
-/*share row*/
-#share-row {
-	background-color: #FFFFFF;
-	height: 250px;
-	margin-top: 75px;
-	margin-bottom: 75px;
+#results-buttons {
+	padding: 25px;
 }
 /*footer*/
 footer.page-footer {

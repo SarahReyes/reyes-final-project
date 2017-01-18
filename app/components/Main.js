@@ -3,7 +3,7 @@ var React = require('react');
 
 // require children components
 var Search = require('./children/Search');
-var PreResults = require('./children/Pre-results');
+var Share = require('./children/Share');
 var Results = require('./children/Results');
 
 // require our AJAX request code to the MovieDB API
@@ -12,28 +12,21 @@ var movieDb = require("./utils/movie-db");
 var Main = React.createClass({
 	// set the initial state
 	getInitialState: function() {
-        return {username: "", email: "", password:"", movieToSearch: "", movieName: "", poster: "", preResults: ""};
+        return {username: "", email: "", password:"", movieName: "", poster: "", overview: "", preResults: ""};
     },
 	// if a search is entered, run the query and update the results
-	searchForMovie: function(this_movie) {
-		// test the results
-		console.log("inside searchForMovie():");
-		console.log(this_movie);
-		console.log(this.state.movieToSearch);
+	searchForMovie: function(userMovieSearchInput) {
 		// run the query for the movie search
-	  	movieDb.movieQuery(this_movie).then(function(data) {
-
-		  	console.log("Movie Results", data);
+	  	movieDb.movieQuery(userMovieSearchInput).then(function(data) {
 		  	this.setState({movieName: data.results[0].original_title});
 			this.setState({poster: data.results[0].poster_path});
-			console.log(this.state.movieName);
-
+			this.setState({overview: data.results[0].overview});
 		}.bind(this));
 	},
-	// set the movieToSearch with the movie that was entered in the form
-	setMovie: function(movieName) {
+	// set the movieName with the movie that was entered in the form
+	setMovie: function(movie) {
 		// set the state to the name of the movie that was entered in the form
-		this.setState({ movieToSearch: movieName });
+		this.setState({movieName: movie});
 	},
 	handleLoginChange: function(key) {
 		return function (e) {
@@ -81,9 +74,18 @@ var Main = React.createClass({
 		                <Search setMovie={this.setMovie} searchForMovie={this.searchForMovie} />
 		            </div>
 				</div>
+				<div className="row section scrollspy" id="results-row">
+					<div className="col s12">
+						<Results movie={this.state.movieName} poster={this.state.poster} overview={this.state.overview} />
+					</div>
+				</div>
+				<div className="row section scrollspy" id="share-row">
+					<div className="col s12 center-align">
+						<Share />
+					</div>
+				</div>
 				{/* end components */}
 				{/* modal */}
-				{/* modal structure */}
 				<div id="modal1" className="modal">
 				    <div className="row">
 				        <form className="col s12" onSubmit={this.handleLoginSubmit}>
