@@ -5,6 +5,7 @@ var React = require('react');
 var Search = require('./children/Search');
 var Share = require('./children/Share');
 var Results = require('./children/Results');
+var Login = require('./children/Login');
 
 // require our AJAX request code to the MovieDB API
 var movieDb = require("./utils/movie-db");
@@ -12,7 +13,7 @@ var movieDb = require("./utils/movie-db");
 var Main = React.createClass({
 	// set the initial state
 	getInitialState: function() {
-        return {username: "", email: "", password:"", movieName: "", poster: "", overview: "", preResults: ""};
+        return {username: "", movieName: "", poster: "", overview: ""};
     },
 	// if a search is entered, run the query and update the results
 	searchForMovie: function(userMovieSearchInput) {
@@ -32,30 +33,20 @@ var Main = React.createClass({
 		// set the state to the name of the movie that was entered in the form
 		this.setState({movieName: movie});
 	},
-	handleLoginChange: function(key) {
-		return function (e) {
-	    	var state = {};
-	  		state[key] = e.target.value;
-	  		this.setState(state);
-			console.log("FORM: " + key);
-		}.bind(this);
-	},
-	handleLoginSubmit: function() {
-		// do something when the user clicks the login submit button
+	setLoginName: function(name) {
+		// set the login state to the username that was entered on the form
+		this.setState({username: name});
+		// **CREATE SOMETHING HERE TO HELP SET THE LOGIN TO "LOGIN", THEN CHANGE THE STATE TO THE USERNAME
+
+		// run the query for the login
+		movieDb.postLogin();
 	},
 	render: function() {
 		return (
+
 			<div className="container">
-				{/* nav bar start */}
-				<nav>
-			      <div className="nav-wrapper">
-			        <a href="#" className="brand-logo">roughcut</a>
-			        <ul id="nav-mobile" className="right hide-on-med-and-down">
-			          <li><a href="#modal1" id="login">login</a></li>
-			        </ul>
-			      </div>
-			    </nav>
-				{/* nav bar end */}
+				<Login username={this.state.username} />
+
 				{/* intro row with icons */}
 				<div className="row" id="intro-row">
 					<div className="col s4 text-center">
@@ -89,36 +80,6 @@ var Main = React.createClass({
 					</div>
 				</div>
 				{/* end components */}
-				{/* modal */}
-				<div id="modal1" className="modal">
-				    <div className="row">
-				        <form className="col s12" onSubmit={this.handleLoginSubmit}>
-					        <div className="row">
-					            <div className="input-field col s6">
-					            	<input value={this.state.username} type="text" id="user_name" className="validate" onChange={this.handleLoginChange('username')} />
-					            	<label htmlFor="user_name">user name</label>
-					            </div>
-					        </div>
-							<div className="row">
-							    <div className="col s12">
-									<div className="input-field inline">
-									    <input value={this.state.email} type="email" id="email" className="validate" onChange={this.handleLoginChange('email')} />
-									    <label htmlFor="email" data-error="wrong" data-success="right">email</label>
-									</div>
-							    </div>
-							</div>
-					        <div className="row">
-					            <div className="input-field col s12">
-						            <input value={this.state.password} type="password" id="password" className="validate" onChange={this.handleLoginChange('password')} />
-						            <label htmlFor="password">password</label>
-					            </div>
-					        </div>
-				        </form>
-				    </div>
-  					<div className="modal-footer">
-						<a href="#!" className=" modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
-  					</div>
-				</div>
 				{/* footer */}
 				<footer className="page-footer">
 					<div className="container">

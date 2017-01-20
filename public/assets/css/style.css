@@ -27,6 +27,7 @@ a {
 }
 h1 {
 	color: #FFFFFF;
+	margin-top: 0px;
 }
 img {
 	border: 0px;
@@ -44,6 +45,10 @@ nav .brand-logo {
     font-size: 2.1rem;
     padding-left: 20px;
     white-space: nowrap;
+}
+/*modal*/
+#loginInput {
+	margin-left: 35px;
 }
 /*intro-row*/
 #intro-row {
@@ -110,7 +115,6 @@ input[type=text].valid, input[type=email].valid, input[type=password].valid {
 #results-row {
 	color: #FFFFFF;
 	height: 200px;
-	margin-bottom: 0px;
 }
 #movie-data {
 	color: #FFFFFF;
