@@ -42,18 +42,17 @@ var Login = React.createClass({
 				<div id="modal1" className="modal">
 					<div className="row">
 						<form className="col s12" id="loginInputs" onSubmit={this.handleLoginSubmit}>
+							<h3>login</h3>
 							<div className="row">
-								<div className="input-field col s6">
+								<div className="input-field col s12">
 									<input value={this.state.username} type="text" id="user_name" className="validate" onChange={this.handleUsernameChange} />
 									<label htmlFor="user_name">user name</label>
 								</div>
 							</div>
 							<div className="row">
-								<div className="col s12">
-									<div className="input-field inline">
-										<input value={this.state.email} type="email" id="email" className="validate" onChange={this.handleEmailChange} />
-										<label htmlFor="email" data-error="wrong" data-success="right">email</label>
-									</div>
+								<div className="input-field col s12">
+									<input value={this.state.email} type="email" id="email" className="validate" onChange={this.handleEmailChange} />
+									<label htmlFor="email" data-error="wrong" data-success="right">email</label>
 								</div>
 							</div>
 							<div className="row">
@@ -62,10 +61,8 @@ var Login = React.createClass({
 									<label htmlFor="password">password</label>
 								</div>
 							</div>
-							<button type="button" className=" modal-action modal-close waves-effect waves-green btn-flat" onClick={this.handleLogin}>login</button>
+							<button type="button" className="modal-action modal-close waves-effect waves-light btn" onClick={this.handleLogin}>submit</button>
 						</form>
-					</div>
-					<div className="modal-footer">
 					</div>
 				</div>
 			</div>

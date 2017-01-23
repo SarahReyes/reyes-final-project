@@ -20,7 +20,7 @@ var Main = React.createClass({
 		// run the query for the movie search
 	  	movieDb.movieQuery(userMovieSearchInput).then(function(data) {
 		  	this.setState({movieName: data.results[0].original_title});
-			this.setState({poster: data.results[0].poster_path});
+			// this.setState({poster: data.results[0].poster_path});
 			this.setState({overview: data.results[0].overview});
 			// after we receive the result, post the search to the database
 			movieDb.postSearch(this.state.movieName).then(function() {

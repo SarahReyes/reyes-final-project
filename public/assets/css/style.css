@@ -18,6 +18,7 @@ body, html {
 }
 .container {
 	width: 100%;
+    max-width: none;
 }
 p {
 	margin: 10px;
@@ -47,8 +48,8 @@ nav .brand-logo {
     white-space: nowrap;
 }
 /*modal*/
-#loginInput {
-	margin-left: 35px;
+#loginInputs {
+	padding: 50px;
 }
 /*intro-row*/
 #intro-row {
@@ -112,6 +113,17 @@ input[type=text].valid, input[type=email].valid, input[type=password].valid {
     background-color: #D32F2F;
 }
 /*results row*/
+h1 {
+	font-weight: 600;
+}
+h4 {
+	font-weight: 600;
+}
+#results-container {
+	background-color:rgba(0, 0, 0, 0.4);
+	font-weight: 600;
+	padding: 30px;
+}
 #results-row {
 	color: #FFFFFF;
 	height: 200px;
@@ -119,7 +131,7 @@ input[type=text].valid, input[type=email].valid, input[type=password].valid {
 #movie-data {
 	color: #FFFFFF;
 	padding-left: 40px;
-	font-weight: bold;
+	font-weight: 600;
 }
 #save-icon {
 	padding-right: 10px;

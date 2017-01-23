@@ -6,7 +6,7 @@ var Search = require('./Search');
 var Results = React.createClass({
     render: function() {
         return (
-			<div className="container">
+			<div className="container" id="results-container">
 				<div className="row center-align">
 					<div className="col s6" id="movie-data">
 						<h1>{this.props.movie}</h1>
