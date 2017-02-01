@@ -13,7 +13,7 @@ var movieDb = require("./utils/movie-db");
 var Main = React.createClass({
 	// set the initial state
 	getInitialState: function() {
-        return {username: "", movieName: "", poster: "", overview: ""};
+        return {username: "", email: "", password: "", movieName: "", poster: "", overview: ""};
     },
 	// if a search is entered, run the query and update the results
 	searchForMovie: function(userMovieSearchInput) {
@@ -33,19 +33,23 @@ var Main = React.createClass({
 		// set the state to the name of the movie that was entered in the form
 		this.setState({movieName: movie});
 	},
-	setLoginName: function(name) {
+	// if a login is entered, grab the login data and update the state
+	grabLogin: function(username, email, password) {
+		movieDb.postLogin(this.state.username, this.state.email, this.state.password).then(function(){
+			console.log("Login Added To Database");
+		}.bind(this));
+	},
+	setLogin: function(name, email, password) {
 		// set the login state to the username that was entered on the form
 		this.setState({username: name});
-		// **CREATE SOMETHING HERE TO HELP SET THE LOGIN TO "LOGIN", THEN CHANGE THE STATE TO THE USERNAME
-
-		// run the query for the login
-		movieDb.postLogin();
+		this.setState({email: email});
+		this.setState({password: password});
 	},
 	render: function() {
 		return (
 
 			<div className="container">
-				<Login username={this.state.username} />
+				<Login username={this.state.username} setLogin={this.setLogin} grabLogin={this.grabLogin} />
 
 				{/* intro row with icons */}
 				<div className="row" id="intro-row">

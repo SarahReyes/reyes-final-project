@@ -21,6 +21,15 @@ var Login = React.createClass({
 		console.log("Username: " + this.state.username);
 		console.log("Email: " + this.state.email);
 		console.log("Password: " + this.state.password);
+
+		// grab the inputs and assign them to a new variable
+		var usernameInput = this.state.username;
+		var emailInput = this.state.email;
+		var passwordInput = this.state.password;
+
+		this.props.grabLogin(usernameInput, emailInput, passwordInput);
+		this.props.setLogin(usernameInput, emailInput, passwordInput);
+		// clear out the form
 		this.setState({username: ""});
 		this.setState({email: ""});
 		this.setState({password: ""});
@@ -41,7 +50,7 @@ var Login = React.createClass({
 				</nav>
 				<div id="modal1" className="modal">
 					<div className="row">
-						<form className="col s12" id="loginInputs" onSubmit={this.handleLoginSubmit}>
+						<form className="col s12" id="loginInputs" onSubmit={this.handleLogin}>
 							<h3>login</h3>
 							<div className="row">
 								<div className="input-field col s12">

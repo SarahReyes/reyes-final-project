@@ -55,12 +55,13 @@ db.once("open", function() {
 app.get("/", function(req, res) {
   	res.sendFile(__dirname + "./public/index.html");
 });
+
 // post each search to the database
-app.post("/api", function(req, res){
+app.post("/api", function(req, res) {
 	Search.create({
 		movieName: req.body.movieName,
 		date: Date.now()
-	}, function(err){
+	}, function(err) {
 		if (err) {
 			console.log(err);
 		}
@@ -70,12 +71,19 @@ app.post("/api", function(req, res){
 	});
 });
 
-// add new user login to database
+// add new user login to the database
 app.post("/login", function(req, res) {
 	Login.create({
 		username: req.body.username,
 		email: req.body.email,
 		password: req.body.password
+	}, function(err) {
+		if (err) {
+			console.log("Login ERROR: " + err);
+		}
+		else {
+			res.send("Login Saved");
+		}
 	});
 });
 
