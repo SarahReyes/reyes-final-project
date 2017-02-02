@@ -34,22 +34,26 @@ var Main = React.createClass({
 		this.setState({movieName: movie});
 	},
 	// if a login is entered, grab the login data and update the state
-	grabLogin: function(username, email, password) {
-		movieDb.postLogin(this.state.username, this.state.email, this.state.password).then(function(){
-			console.log("Login Added To Database");
+	grabLoginUsernameInput: function(usernameInput) {
+		// set the state in the parent, to the value of the username from the form
+		this.setState({username: usernameInput});
+		// TEST that we are passing the value to this function
+		console.log("Value being passed to the grabLoginUsernameInput function: " + usernameInput);
+		movieDb.postLogin(usernameInput).then(function(){
 		}.bind(this));
 	},
-	setLogin: function(name, email, password) {
-		// set the login state to the username that was entered on the form
-		this.setState({username: name});
-		this.setState({email: email});
-		this.setState({password: password});
-	},
+	// setLogin: function(name, email, password) {
+	// 	// set the login state to the username that was entered on the form
+	// 	this.setState({username: name});
+	// 	this.setState({email: email});
+	// 	this.setState({password: password});
+	// },
 	render: function() {
 		return (
 
 			<div className="container">
-				<Login username={this.state.username} setLogin={this.setLogin} grabLogin={this.grabLogin} />
+				<Login grabLoginUsernameInput={this.grabLoginUsernameInput} />
+				{/* username={this.state.username} setLogin={this.setLogin} - may need to add this back into the above component */}
 
 				{/* intro row with icons */}
 				<div className="row" id="intro-row">

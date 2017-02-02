@@ -24,10 +24,12 @@ var movieDb = {
 		});
 	},
 	// post new logins to the database
-	postLogin: function(username, email, password) {
-  		return axios.post("/login", {username: username, email: email, password: password});
+	postLogin: function(usernameInput) {
+		// TEST the value being passed to the function
+		console.log("Value being passed to the postLogin function: " + usernameInput);
+  		return axios.post("/login", {username: usernameInput});
 	},
-	// post new searches to the database 
+	// post new searches to the database
 	postSearch: function(movieToSearch) {
   		return axios.post("/api", {movieName: movieToSearch});
 	}

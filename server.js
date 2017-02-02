@@ -82,7 +82,7 @@ app.post("/login", function(req, res) {
 			console.log("Login ERROR: " + err);
 		}
 		else {
-			res.send("Login Saved");
+			res.send("Login Saved To Database");
 		}
 	});
 });

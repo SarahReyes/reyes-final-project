@@ -26,9 +26,10 @@ var Login = React.createClass({
 		var usernameInput = this.state.username;
 		var emailInput = this.state.email;
 		var passwordInput = this.state.password;
-
-		this.props.grabLogin(usernameInput, emailInput, passwordInput);
-		this.props.setLogin(usernameInput, emailInput, passwordInput);
+		// pass the grabLoginUsernameInput, the username value
+		this.props.grabLoginUsernameInput(usernameInput);
+		// not sure we need this anymore!
+		// this.props.setLogin(usernameInput, emailInput, passwordInput);
 		// clear out the form
 		this.setState({username: ""});
 		this.setState({email: ""});
