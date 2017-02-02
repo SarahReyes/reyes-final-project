@@ -35,6 +35,9 @@ app.use(express.static("./public"));
 // -----------------
 
 //------- MongoDB configuration -------//
+// TEST locally
+// mongoose.connect('mongodb://localhost/testFinalProject');
+
 // heroku key is stored in an environment variable
 mongoose.connect(process.env.MONGODB_URI);
 var db = mongoose.connection;
@@ -58,6 +61,8 @@ app.get("/", function(req, res) {
 
 // post each search to the database
 app.post("/api", function(req, res) {
+	// TEST movieName
+	console.log("BODY movieName: " + req.body.movieName);
 	Search.create({
 		movieName: req.body.movieName,
 		date: Date.now()
@@ -66,6 +71,7 @@ app.post("/api", function(req, res) {
 			console.log(err);
 		}
 		else {
+			// I'M NOT SEEING THIS ANYWHERE!
 			res.send("Search Saved");
 		}
 	});
@@ -73,6 +79,8 @@ app.post("/api", function(req, res) {
 
 // add new user login to the database
 app.post("/login", function(req, res) {
+	// TEST username
+	console.log("BODY username: " + req.body.username);
 	Login.create({
 		username: req.body.username,
 		email: req.body.email,
@@ -82,6 +90,7 @@ app.post("/login", function(req, res) {
 			console.log("Login ERROR: " + err);
 		}
 		else {
+			// POST IS HAPPENING IN TERMINAL, BUT NOT SEEING THIS, AND IT'S NOT IN MLAB
 			res.send("Login Saved To Database");
 		}
 	});

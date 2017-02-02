@@ -24,7 +24,6 @@ var Main = React.createClass({
 			this.setState({overview: data.results[0].overview});
 			// after we receive the result, post the search to the database
 			movieDb.postSearch(this.state.movieName).then(function() {
-			  console.log("Database Updated!");
 			}.bind(this));
 		}.bind(this));
 	},
@@ -39,15 +38,9 @@ var Main = React.createClass({
 		this.setState({username: usernameInput});
 		// TEST that we are passing the value to this function
 		console.log("Value being passed to the grabLoginUsernameInput function: " + usernameInput);
-		movieDb.postLogin(usernameInput).then(function(){
+		movieDb.postLogin(this.state.username).then(function(){
 		}.bind(this));
 	},
-	// setLogin: function(name, email, password) {
-	// 	// set the login state to the username that was entered on the form
-	// 	this.setState({username: name});
-	// 	this.setState({email: email});
-	// 	this.setState({password: password});
-	// },
 	render: function() {
 		return (
 
@@ -58,16 +51,16 @@ var Main = React.createClass({
 				{/* intro row with icons */}
 				<div className="row" id="intro-row">
 					<div className="col s4 text-center">
-						<p><a href="#search-row">search.</a></p>
 						<a href="#search-row"><i className="material-icons" id="row-icons">search</i></a>
+						<p><a href="#search-row">search</a></p>
 					</div>
 					<div className="col s4 text-center">
-						<p><a href="#results-row">collect.</a></p>
 						<a href="#results-row"><i className="material-icons" id="row-icons">theaters</i></a>
+						<p><a href="#results-row">collect</a></p>
 					</div>
 					<div className="col s4 text-center">
-						<p><a href="#share-row">share.</a></p>
 						<a href="#share-row"><i className="material-icons" id="row-icons">contacts</i></a>
+						<p><a href="#share-row">share</a></p>
 					</div>
 				</div>
 				{/* end intro row with icons */}
@@ -103,7 +96,7 @@ var Main = React.createClass({
 					</div>
 					<div className="footer-copyright">
 						<div className="container center-align">
-							© 2017 copyright roughtcut
+							© 2017 copyright roughcut
 						</div>
 					</div>
 				</footer>
