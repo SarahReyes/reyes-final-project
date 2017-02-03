@@ -1,30 +1,45 @@
 
 var React = require('react');
 
-var movieDb = require("../utils/movie-db");
+var movieDb = require('../utils/movie-db');
 var Results = require('./Results');
+var Saved = require('./Saved');
+var Main = require('../Main');
 
 var Search = React.createClass({
-	// set a generic state associated with the text being searched for
+	// set the initial state for the movie name and set showResults to false
 	getInitialState: function() {
-        return {movie: ""};
-    },
+			return {movieName: "", year: "", overview: "", poster: "", showResults: false};
+	},
 	// get the value of the user input
 	handleChange: function(event) {
-		this.setState({movie: event.target.value});
+		this.setState({movieName: event.target.value});
 	},
 	// when a user submits
     handleSubmit: function(event) {
 	    // prevent hitting enter for submit
 	    event.preventDefault();
-	    // set the userMovieSearchInput
-	    var userMovieSearchInput = this.state.movie;
-	    // run the searchForMovie query function
-	    this.props.searchForMovie(userMovieSearchInput);
-	    // set the movie, to the movie that was searched
-	    this.props.setMovie(userMovieSearchInput);
+		// set the userMovieSearchInput
+		var userMovieSearchInput = this.state.movieName;
+		// TEST
+		console.log("userMovieSearchInput: " + userMovieSearchInput);
+		// run the query for the movie search
+		movieDb.movieQuery(userMovieSearchInput).then(function(data) {
+			this.setState({movieName: data.results[0].original_title});
+			this.setState({year: data.results[0].release_date});
+			this.setState({overview: data.results[0].overview});
+			this.setState({poster: data.results[0].poster_path});
+			// TEST
+			console.log("POSTER: " + poster);
+
+			// after we receive the result, post the search to the database
+			movieDb.postSearch(this.state.movieName).then(function() {
+			}.bind(this));
+		}.bind(this));
+		// change the state of showResults
+		this.setState({showResults: true});
 	    // clear out the form, so they can search again
-	    this.setState({ movie: ""});
+	    this.setState({ movieName: ""});
     },
 	render: function() {
 		return (
@@ -33,7 +48,7 @@ var Search = React.createClass({
 					<form className="col s12" id="movie-search-form" onSubmit={this.handleSubmit}>
 						<div className="input-field col s12">
 							<input
-								value={this.state.movie}
+								value={this.state.movieName}
 								type="text"
 								id="movie-search"
 								className="validate"
@@ -46,6 +61,11 @@ var Search = React.createClass({
 							</button>
 						</div>
 					</form>
+				</div>
+				<div className="row section scrollspy" id="results-row">
+					<div className="col s12">
+						{this.state.showResults ? <Results movie={this.state.movieName} year={this.state.year} overview={this.state.overview} poster={this.state.poster} /> : null}
+					</div>
 				</div>
 			</div>
 		);

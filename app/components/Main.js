@@ -3,7 +3,7 @@ var React = require('react');
 
 // require children components
 var Search = require('./children/Search');
-var Share = require('./children/Share');
+var Saved = require('./children/Saved');
 var Results = require('./children/Results');
 var Login = require('./children/Login');
 
@@ -13,25 +13,8 @@ var movieDb = require("./utils/movie-db");
 var Main = React.createClass({
 	// set the initial state
 	getInitialState: function() {
-        return {username: "", email: "", password: "", movieName: "", poster: "", overview: ""};
+        return {username: "", email: "", password: "", poster: ""};
     },
-	// if a search is entered, run the query and update the results
-	searchForMovie: function(userMovieSearchInput) {
-		// run the query for the movie search
-	  	movieDb.movieQuery(userMovieSearchInput).then(function(data) {
-		  	this.setState({movieName: data.results[0].original_title});
-			// this.setState({poster: data.results[0].poster_path});
-			this.setState({overview: data.results[0].overview});
-			// after we receive the result, post the search to the database
-			movieDb.postSearch(this.state.movieName).then(function() {
-			}.bind(this));
-		}.bind(this));
-	},
-	// set the movieName with the movie that was entered in the form
-	setMovie: function(movie) {
-		// set the state to the name of the movie that was entered in the form
-		this.setState({movieName: movie});
-	},
 	// if a login is entered, grab the login data and update the state
 	grabLoginUsernameInput: function(usernameInput) {
 		// set the state in the parent, to the value of the username from the form
@@ -67,18 +50,8 @@ var Main = React.createClass({
 				{/* components */}
 				<div className="row section scrollspy" id="search-row">
 					<div className="col s12">
-		                <Search setMovie={this.setMovie} searchForMovie={this.searchForMovie} />
+		                <Search />
 		            </div>
-				</div>
-				<div className="row section scrollspy" id="results-row">
-					<div className="col s12">
-						<Results movie={this.state.movieName} poster={this.state.poster} overview={this.state.overview} />
-					</div>
-				</div>
-				<div className="row section scrollspy" id="share-row">
-					<div className="col s12 center-align">
-						<Share />
-					</div>
 				</div>
 				{/* end components */}
 				{/* footer */}
