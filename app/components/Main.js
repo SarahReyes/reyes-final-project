@@ -8,7 +8,7 @@ var Results = require('./children/Results');
 var Login = require('./children/Login');
 
 // require our AJAX request code to the MovieDB API
-var movieDb = require("./utils/movie-db");
+var httpReq = require("./utils/http-req");
 
 var Main = React.createClass({
 	// set the initial state
@@ -21,7 +21,7 @@ var Main = React.createClass({
 		this.setState({username: usernameInput});
 		// TEST that we are passing the value to this function
 		console.log("Value being passed to the grabLoginUsernameInput function: " + usernameInput);
-		movieDb.postLogin(this.state.username).then(function(){
+		httpReq.postLogin(this.state.username).then(function(){
 		}.bind(this));
 	},
 	render: function() {

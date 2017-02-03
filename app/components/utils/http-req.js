@@ -9,7 +9,7 @@ if (!process.env.NODE_ENV) {
 // save the API key for MovieDB in an environment variable
 var movieDbKey = process.env.MOVIE_DB_KEY;
 
-var movieDb = {
+var httpReq = {
 	movieQuery: function(movieToSearch) {
 		var queryURL = "https://api.themoviedb.org/3/search/movie?api_key=" + movieDbKey +
 					   "&language=en-US&query=" + movieToSearch + "&include_adult=false";
@@ -32,7 +32,10 @@ var movieDb = {
 	// post new searches to the database
 	postSearch: function(movieToSearch) {
   		return axios.post("/api", {movieName: movieToSearch});
+	},
+	getSaved: function() {
+  		return axios.get("/saved");
 	}
 };
 // export the API query code
-module.exports = movieDb;
+module.exports = httpReq;

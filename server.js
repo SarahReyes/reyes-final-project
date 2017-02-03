@@ -16,8 +16,8 @@ if (!process.env.NODE_ENV) {
 var Search = require("./models/Search");
 // connect to the Login model
 var Login = require("./models/Login");
-// connect to movie-db.js, API call generator
-var movieDb = require("./app/components/utils/movie-db.js");
+// connect to http-req.js, API call generator
+var httpReq = require("./app/components/utils/http-req.js");
 
 // create a new express app
 var app = express();
@@ -96,6 +96,19 @@ app.post("/login", function(req, res) {
 	});
 });
 
+// get the user's saved movies
+app.get('/saved', function(req, res) {
+	Search.find({}).sort([
+		["name", "descending"]
+	]). limit(50).exec(function(err, doc) {
+		if (err) {
+			console.log(err);
+		}
+		else {
+			res.send(doc);
+		}
+	});
+});
 
 // -------end routes------- //
 
