@@ -16,8 +16,6 @@ if (!process.env.NODE_ENV) {
 var Search = require("./models/Search");
 // connect to the Login model
 var Login = require("./models/Login");
-// connect to http-req.js, API call generator
-var httpReq = require("./app/components/utils/http-req.js");
 
 // create a new express app
 var app = express();

@@ -5,7 +5,7 @@ var Search = require('./Search');
 var Saved = require('./Saved');
 var Main = require('../Main');
 
-var httpReq = require('../utils/http-req');
+var mlab = require('../utils/mlab-db');
 
 
 var Results = React.createClass({
@@ -17,8 +17,11 @@ var Results = React.createClass({
 		console.log("Save button is being clicked!");
 		// set the state to true
 		this.setState({showSaved: true});
+		// after we receive the result, post the search to the database
+		mlab.postSearch(this.props.movie).then(function() {
+		}.bind(this));
 		// grab the previously saved files
-		httpReq.getSaved().then(function(response) {
+		mlab.getSaved().then(function(response) {
   			console.log(response);
   			if (response !== this.state.saved) {
 				console.log("Saved Movies: ", response.data);

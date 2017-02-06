@@ -1,7 +1,8 @@
 
 var React = require('react');
 
-var httpReq = require('../utils/http-req');
+var movieDb = require('../utils/movie-db');
+var mlab = require('../utils/mlab-db');
 var Results = require('./Results');
 var Saved = require('./Saved');
 var Main = require('../Main');
@@ -26,17 +27,13 @@ var Search = React.createClass({
 		// TEST
 		console.log("userMovieSearchInput: " + userMovieSearchInput);
 		// run the query for the movie search
-		httpReq.movieQuery(userMovieSearchInput).then(function(data) {
+		movieDb.movieQuery(userMovieSearchInput).then(function(data) {
 			this.setState({movieName: data.results[0].original_title});
 			this.setState({year: data.results[0].release_date});
 			this.setState({overview: data.results[0].overview});
 			this.setState({poster: data.results[0].poster_path});
 			// TEST
 			console.log("POSTER: " + poster);
-
-			// after we receive the result, post the search to the database
-			httpReq.postSearch(this.state.movieName).then(function() {
-			}.bind(this));
 		}.bind(this));
 
 	    // clear out the form, so they can search again
