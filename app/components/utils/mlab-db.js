@@ -18,6 +18,9 @@ var mlab = {
 	},
 	getSaved: function() {
   		return axios.get("/saved");
+	},
+	deleteSaved: function() {
+		return axios.delete("/delete");
 	}
 };
 // export the API query code

@@ -108,6 +108,23 @@ app.get('/saved', function(req, res) {
 	});
 });
 
+// delete a saved movie from the user database
+app.delete('/delete', function(req, res){
+	Search.remove({
+		// IS req.body.movieName the right way to find this?????
+		movieName: req.body.movieName,
+		date: Date.now()
+	}, function(err) {
+		if (err) {
+			console.log(err);
+		}
+		else {
+			// I'M NOT SEEING THIS ANYWHERE!
+			res.send("Movie Deleted");
+		}
+	});
+});
+
 // -------end routes------- //
 
 
