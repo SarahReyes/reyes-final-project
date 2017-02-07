@@ -1,5 +1,5 @@
 
-// require axios
+// require axios,
 var axios = require('axios');
 
 // TEST
@@ -12,15 +12,18 @@ var mlab = {
 		console.log("Value being passed to the postLogin function: " + usernameInput);
   		return axios.post("/login", {username: usernameInput});
 	},
-	// post new searches to the database
-	postSearch: function(movieToSearch) {
-  		return axios.post("/api", {movieName: movieToSearch});
+	// post new saved movies to the database
+	postSaved: function(movieToSave, movieId) {
+		var newMovieId = parseInt(movieId);
+  		return axios.post("/api", {movieName: movieToSave, movieId: newMovieId});
 	},
 	getSaved: function() {
   		return axios.get("/saved");
 	},
-	deleteSaved: function() {
-		return axios.delete("/delete");
+	deleteSaved: function(movieId) {
+		console.log('deleteSaved axios fired');
+		console.log('movieId from axios' + movieId);
+		return axios.delete("/delete/" + movieId);
 	}
 };
 // export the API query code

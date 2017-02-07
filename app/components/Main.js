@@ -14,7 +14,22 @@ var mlab = require('./utils/mlab-db');
 var Main = React.createClass({
 	// set the initial state
 	getInitialState: function() {
-        return {username: "", email: "", password: "", poster: ""};
+        return {
+			username: "",
+			email: "",
+			password: "",
+			movieId: "",
+			movieName: "",
+			resultMovie: "",
+			year: "",
+			overview: "",
+			poster: "",
+			showResults: false,
+			showSaved: false,
+			collection: "",
+			saved: [],
+			error: ""
+		};
     },
 	// if a login is entered, grab the login data and update the state
 	grabLoginUsernameInput: function(usernameInput) {
@@ -23,6 +38,71 @@ var Main = React.createClass({
 		// TEST that we are passing the value to this function
 		console.log("Value being passed to the grabLoginUsernameInput function: " + usernameInput);
 		mlab.postLogin(this.state.username).then(function(){
+		}.bind(this));
+	},
+	// get the value of the user input
+	handleSearchChange: function(event) {
+		this.setState({movieName: event.target.value});
+	},
+	// when a user submits
+    handleSearchSubmit: function(event) {
+	    // prevent hitting enter for submit
+	    event.preventDefault();
+		// change the state of showResults
+		this.setState({
+			showResults: true,
+			error: ""
+		});
+		// set the userMovieSearchInput
+		var userMovieSearchInput = this.state.movieName;
+		// TEST
+		console.log("userMovieSearchInput: " + userMovieSearchInput);
+		// run the query for the movie search
+		movieDb.movieQuery(userMovieSearchInput).then(function(data) {
+			if(data) {
+				this.setState({movieId: data.results[0].id});
+				this.setState({resultMovie: data.results[0].original_title});
+				this.setState({year: data.results[0].release_date});
+				this.setState({overview: data.results[0].overview});
+				this.setState({poster: "https://image.tmdb.org/t/p/w300_and_h450_bestv2" + data.results[0].poster_path});
+			} else {
+				this.setState({
+					error: "We don't know of any movies with that title."
+				});
+			}
+		}.bind(this));
+
+	    // clear out the form, so they can search again
+	    this.setState({movieName: ""});
+    },
+	onSaveClick: function() {
+		// TEST
+		console.log("Save button is being clicked!");
+		// set the state to true
+		this.setState({showSaved: true});
+		// after we receive the result, post the saved movie to the database
+		mlab.postSaved(this.state.resultMovie, this.state.movieId).then(function() {
+		}.bind(this));
+		// grab the previously saved files
+		mlab.getSaved().then(function(response) {
+			console.log(response);
+			if (response !== this.state.saved) {
+				console.log("Saved Movies: ", response.data);
+				this.setState({saved: response.data});
+			}
+		}.bind(this));
+	},
+	deleteSaved: function(movieId) {
+		console.log('react delete saved fired');
+		mlab.deleteSaved(movieId)
+		.then(function(response) {
+			console.log(response);
+			mlab.getSaved()
+			.then(function(data) {
+				this.setState({
+					saved: data.data
+				});
+			}.bind(this));
 		}.bind(this));
 	},
 	render: function() {
@@ -49,11 +129,37 @@ var Main = React.createClass({
 				</div>
 				{/* end intro row with icons */}
 				{/* components */}
-				<div className="row section scrollspy" id="search-row">
-					<div className="col s12">
-		                <Search />
-		            </div>
-				</div>
+				{/* <div className="row section scrollspy" id="search-row">
+					<div className="col s12"> */}
+		                <Search
+							handleSearchSubmit={this.handleSearchSubmit}
+							handleSearchChange={this.handleSearchChange}
+							movieName={this.state.movieName}
+						/>
+		            {/* </div>
+				</div> */}
+				{/* <div className="row section scrollspy" id="results-row">
+					<div className="col s12"> */}
+						{this.state.showResults ?
+							<Results
+								onSaveClick={this.onSaveClick}
+								resultMovie={this.state.resultMovie}
+								year={this.state.year}
+								overview={this.state.overview}
+								poster={this.state.poster}
+								error={this.state.error}
+							/> : null}
+					{/* </div>
+				</div> */}
+				{/* <div className="row section scrollspy" id="saved-row">
+					<div className="col s12 left-align"> */}
+						{this.state.showSaved ?
+							<Saved
+								saved={this.state.saved}
+								deleteSaved={this.deleteSaved}
+							/> : null}
+					{/* </div>
+				</div> */}
 				{/* end components */}
 				{/* footer */}
 				<footer className="page-footer">

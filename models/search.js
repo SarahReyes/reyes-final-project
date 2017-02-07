@@ -3,6 +3,9 @@ var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
 
 var SearchSchema = new Schema({
+	movieId: {
+		type: Number
+	},
     movieName: {
         type: String
     },

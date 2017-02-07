@@ -4,6 +4,7 @@ var express = require("express");
 var bodyParser = require("body-parser");
 var logger = require("morgan");
 var mongoose = require("mongoose");
+var Promise = require('bluebird');
 var objectValues = require("object-values");
 
 
@@ -36,6 +37,7 @@ app.use(express.static("./public"));
 // TEST locally
 // mongoose.connect('mongodb://localhost/testFinalProject');
 
+mongoose.promise = Promise;
 // heroku key is stored in an environment variable
 mongoose.connect(process.env.MONGODB_URI);
 var db = mongoose.connection;
@@ -57,14 +59,15 @@ app.get("/", function(req, res) {
   	res.sendFile(__dirname + "./public/index.html");
 });
 
-// post each search to the database
+// post each saved movie to the database
 app.post("/api", function(req, res) {
 	// TEST movieName
 	console.log("BODY movieName: " + req.body.movieName);
 	Search.create({
+		movieId: req.body.movieId,
 		movieName: req.body.movieName,
 		date: Date.now()
-	}, function(err) {
+	}).then(function(err) {
 		if (err) {
 			console.log(err);
 		}
@@ -83,7 +86,7 @@ app.post("/login", function(req, res) {
 		username: req.body.username,
 		email: req.body.email,
 		password: req.body.password
-	}, function(err) {
+	}).then(function(err) {
 		if (err) {
 			console.log("Login ERROR: " + err);
 		}
@@ -109,17 +112,17 @@ app.get('/saved', function(req, res) {
 });
 
 // delete a saved movie from the user database
-app.delete('/delete', function(req, res){
+app.delete('/delete/:movieId', function(req, res){
+	console.log('app.delete fired');
+	console.log('req params movieId' + req.params.movieId);
 	Search.remove({
-		// IS req.body.movieName the right way to find this?????
-		movieName: req.body.movieName,
-		date: Date.now()
-	}, function(err) {
+		movieId: req.params.movieId
+	}).then(function(deleted, err) {
 		if (err) {
 			console.log(err);
 		}
 		else {
-			// I'M NOT SEEING THIS ANYWHERE!
+			console.log(deleted);
 			res.send("Movie Deleted");
 		}
 	});
