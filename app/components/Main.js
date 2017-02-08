@@ -1,5 +1,7 @@
 // require react
 var React = require('react');
+// moment js for converting the date
+var moment = require('moment');
 
 // require children components
 var Search = require('./children/Search');
@@ -15,6 +17,7 @@ var Main = React.createClass({
 	// set the initial state
 	getInitialState: function() {
         return {
+			login: "login",
 			username: "",
 			email: "",
 			password: "",
@@ -31,6 +34,39 @@ var Main = React.createClass({
 			error: ""
 		};
     },
+	handleUsernameChange: function(event) {
+		// set the state as we receive the value
+		this.setState({username: event.target.value});
+	},
+	handleEmailChange: function(event) {
+		// set the state as we receive the value
+		this.setState({email: event.target.value});
+	},
+	handlePasswordChange: function(event) {
+		// set the state as we receive the value
+		this.setState({password: event.target.value});
+	},
+	handleLogin: function() {
+		console.log("Username: " + this.state.username);
+		console.log("Email: " + this.state.email);
+		console.log("Password: " + this.state.password);
+
+		// grab the inputs and assign them to a new variable
+		var usernameInput = this.state.username;
+		var emailInput = this.state.email;
+		var passwordInput = this.state.password;
+		// pass the grabLoginUsernameInput, the username value
+		this.props.grabLoginUsernameInput(usernameInput);
+		// not sure we need this anymore!
+		// this.props.setLogin(usernameInput, emailInput, passwordInput);
+		// clear out the form
+		this.setState({username: ""});
+		this.setState({email: ""});
+		this.setState({password: ""});
+
+		// set the state of the login to the username
+		this.setState({login: "logout"});
+	},
 	// if a login is entered, grab the login data and update the state
 	grabLoginUsernameInput: function(usernameInput) {
 		// set the state in the parent, to the value of the username from the form
@@ -60,18 +96,22 @@ var Main = React.createClass({
 		// run the query for the movie search
 		movieDb.movieQuery(userMovieSearchInput).then(function(data) {
 			if(data) {
+				// get the data for the release date
+				var movieDateToConvert = data.results[0].release_date;
+				// use moment to convert the date to just the year
+				var movieDateConverted = moment(movieDateToConvert).format('YYYY');
+				// set the states to the date we received from the API
 				this.setState({movieId: data.results[0].id});
 				this.setState({resultMovie: data.results[0].original_title});
-				this.setState({year: data.results[0].release_date});
+				this.setState({year: movieDateConverted});
 				this.setState({overview: data.results[0].overview});
 				this.setState({poster: "https://image.tmdb.org/t/p/w300_and_h450_bestv2" + data.results[0].poster_path});
 			} else {
 				this.setState({
-					error: "We don't know of any movies with that title."
+					error: "We don't know of any movies with that title. Please try again."
 				});
 			}
 		}.bind(this));
-
 	    // clear out the form, so they can search again
 	    this.setState({movieName: ""});
     },
@@ -108,60 +148,41 @@ var Main = React.createClass({
 	render: function() {
 		return (
 
-			<div className="container">
-				<Login grabLoginUsernameInput={this.grabLoginUsernameInput} />
-				{/* username={this.state.username} setLogin={this.setLogin} - may need to add this back into the above component */}
+			<div className="container page-flexbox-wrapper">
+				<header>
+					<Login
+						handleUsernameChange={this.handleUsernameChange}
+						handleEmailChange={this.handleEmailChange}
+						handlePasswordChange={this.handlePasswordChange}
+						handleLogin={this.handleLogin}
+						grabLoginUsernameInput={this.grabLoginUsernameInput}
+					/>
+				</header>
 
-				{/* intro row with icons */}
-				<div className="row" id="intro-row">
-					<div className="col s4 text-center">
-						<a href="#search-row"><i className="material-icons" id="row-icons">search</i></a>
-						<p><a href="#search-row">search</a></p>
-					</div>
-					<div className="col s4 text-center">
-						<a href="#results-row"><i className="material-icons" id="row-icons">theaters</i></a>
-						<p><a href="#results-row">collect</a></p>
-					</div>
-					<div className="col s4 text-center">
-						<a href="#share-row"><i className="material-icons" id="row-icons">contacts</i></a>
-						<p><a href="#share-row">share</a></p>
-					</div>
-				</div>
-				{/* end intro row with icons */}
-				{/* components */}
-				{/* <div className="row section scrollspy" id="search-row">
-					<div className="col s12"> */}
-		                <Search
-							handleSearchSubmit={this.handleSearchSubmit}
-							handleSearchChange={this.handleSearchChange}
-							movieName={this.state.movieName}
-						/>
-		            {/* </div>
-				</div> */}
-				{/* <div className="row section scrollspy" id="results-row">
-					<div className="col s12"> */}
-						{this.state.showResults ?
-							<Results
-								onSaveClick={this.onSaveClick}
-								resultMovie={this.state.resultMovie}
-								year={this.state.year}
-								overview={this.state.overview}
-								poster={this.state.poster}
-								error={this.state.error}
-							/> : null}
-					{/* </div>
-				</div> */}
-				{/* <div className="row section scrollspy" id="saved-row">
-					<div className="col s12 left-align"> */}
-						{this.state.showSaved ?
-							<Saved
-								saved={this.state.saved}
-								deleteSaved={this.deleteSaved}
-							/> : null}
-					{/* </div>
-				</div> */}
-				{/* end components */}
-				{/* footer */}
+				<main>
+	                <Search
+						handleSearchSubmit={this.handleSearchSubmit}
+						handleSearchChange={this.handleSearchChange}
+						movieName={this.state.movieName}
+					/>
+
+					{this.state.showResults ?
+						<Results
+							onSaveClick={this.onSaveClick}
+							resultMovie={this.state.resultMovie}
+							year={this.state.year}
+							overview={this.state.overview}
+							poster={this.state.poster}
+							error={this.state.error}
+						/> : null}
+
+					{this.state.showSaved ?
+						<Saved
+							saved={this.state.saved}
+							deleteSaved={this.deleteSaved}
+						/> : null}
+				</main>
+
 				<footer className="page-footer">
 					<div className="container">
 					    <div className="row" id="footer-row">

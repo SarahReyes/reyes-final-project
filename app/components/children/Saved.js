@@ -17,15 +17,16 @@ var Saved = React.createClass({
 		console.log("SAVED: " + util.inspect(saved));
 		var saveMap = saved.map(function(search, i) {
 			return (
-				<li key={i}>{search.movieName}
-					<button type="button" className="waves-effect waves-light btn-large btn" onClick={() => {
+				<div
+					key={i}>{search.movieName}
+					<button type="button" className="btn-floating btn-large waves-effect waves-light" id="delete-btn" onClick={function() {
 						console.log('delete saved from map');
 						this.props.deleteSaved(search.movieId);
 					}}>
-						<i className="fa fa-trash-o fa-2x" aria-hidden="true" id="save-icon" ></i>
+						<i className="fa fa-trash-o fa-2x" aria-hidden="true"></i>
 						delete
 					</button>
-				</li>
+				</div>
 			);
 		}.bind(this));
 		return saveMap;
@@ -33,12 +34,10 @@ var Saved = React.createClass({
 	render: function(){
 		return (
 			<div className="container">
-				<div className="row section scrollspy">
-					<div className="col s12 left-align" id="saved-text">
+				<div className="row section scrollspy" id="saved-row">
+					<div className="col s12 center-align">
 						<h1>My Collection</h1>
-						{/* use a map function to loop through an array in JSX */}
 						{this.showSavedMap(this.props.saved)}
-
 					</div>
 				</div>
 			</div>

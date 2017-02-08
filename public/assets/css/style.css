@@ -13,12 +13,23 @@ font-family: 'Hind', sans-serif; - thick
 font-family: 'Josefin Sans', sans-serif; - thin
 */
 
-body, html {
-	font-family: 'Josefin Sans', sans-serif;
-}
 .container {
 	width: 100%;
 	max-width: 2560px;
+}
+body, html {
+	font-family: 'Josefin Sans', sans-serif;
+	font-weight: 600;
+}
+/*sticky footer*/
+.page-flexbox-wrapper {
+	display: flex;
+	min-height: 100vh;
+	flex-direction: column;
+	width: 100%;
+}
+main {
+	flex: 1 0 auto;
 }
 p {
 	margin: 10px;
@@ -29,6 +40,10 @@ a {
 h1 {
 	color: #FFFFFF;
 	margin-top: 0px;
+	font-weight: 600;
+}
+h2 {
+	font-weight: 600;
 }
 img {
 	border: 0px;
@@ -37,6 +52,7 @@ img {
 /*nav bar*/
 nav {
 	background-color: #F44336;
+	width: 100%;
 }
 /*nav bar app name*/
 nav .brand-logo {
@@ -53,65 +69,49 @@ nav .brand-logo {
 	padding: 50px;
 }
 
-/*intro-row*/
-#intro-row {
-	font-size: 70px;
-	text-align: center;
-	background-color: #FFC107;
-	height: 100%;
-	margin-top: 75px;
-	color: #FFFFFF;
-	padding: 50px;
-}
-/*intro-row icons*/
-#row-icons {
-	font-size: 90px;
-	margin-top: 25px;
-	color: #FFFFFF;
-}
-
 /*movie search row*/
-#search-row {
-	height: 200px;
-	margin-top: 75px;
+#movie-search-row {
+	padding: 80px;
 }
-/*input color*/
+.form-wrapper .field-list .field .field-element{
+     font-size:18px;
+ }
+/*input text color*/
 .input-field label {
-	font-family: 'Hind', sans-serif;
 	letter-spacing: 1px;
-	color: #212121;
+	color: #FFF;
+	font-weight: bolder;
+	font-size: 24px;
 }
-/*input focus color*/
+/*input text focus color*/
 .input-field input[type=text]:focus + label, .input-field input[type=email]:focus + label, .input-field input[type=password]:focus + label {
-	font-family: 'Hind', sans-serif;
-    color: #757575;
+    color: #FFF;
 }
 /*search form line*/
 input[type=text], input[type=email], input[type=password] {
-	font-family: 'Hind', sans-serif;
-	border-bottom: 3px solid #212121;
+	border-bottom: 4px solid #FFF;
 }
 /*search form line focus*/
 input[type=text]:focus:not([readonly]), input[type=email]:focus:not([readonly]), input[type=password]:focus:not([readonly]) {
-	font-family: 'Hind', sans-serif;
-	color: #757575;
-	border-bottom: 3px solid #757575;
+	color: #FFF;
+	border-bottom: 4px solid #FFF;
 	box-shadow: none;
+	font-size: 30px;
 }
 /*search form after clicking submit*/
 input[type=text].valid, input[type=email].valid, input[type=password].valid {
-	font-family: 'Hind', sans-serif;
-	color: #757575;
-	border-bottom: 3px solid #757575;
+	color: #FFF;
+	border-bottom: 4px solid #FFF;
 	box-shadow: none;
+}
+input[type=text].valid {
+	font-size: 30px;
 }
 /*search button*/
 .btn {
-	font-family: 'Hind', sans-serif;
 	background-color: #F44336;
 }
 .btn:hover, .btn:focus {
-	font-family: 'Hind', sans-serif;
     background-color: #D32F2F;
 }
 
@@ -122,33 +122,20 @@ h1 {
 h4 {
 	font-weight: 600;
 }
-#results-container {
-	background-color: #FFFFFF;
-	font-weight: 600;
-	padding: 30px;
-}
 #results-row {
+	background-color: #FFFFFF;
 	color: #212121;
-	height: 200px;
-}
-#results-buttons {
-	padding-top: 50px;
-	padding-bottom: 50px;
-}
-#movie-data {
-	color: #212121;
-	padding-left: 40px;
-	padding-top: 50px;
-	padding-bottom: 50px;
 	font-weight: 600;
+	padding: 50px;
+	margin-bottom: 0px;
 }
-#movie-data h1 {
+#results-row h1 {
 	color: #212121;
 }
-.responsive-img {
-	height: 200px;
-	width: 200px;
+#save-share-btn {
+	margin: 20px;
 }
+
 #save-icon {
 	padding-right: 10px;
 }
@@ -157,17 +144,30 @@ h4 {
 }
 
 /*saved component*/
-#saved-text {
+#saved-row {
 	background-color: #FFC107;
-	color: #212121;
+	color: #FFFFFF;
+	padding: 50px;
+	font-size: 32px;
+	margin-top: 0px;
+}
+#saved-row li {
+	font-size: 32px;
+}
+/*delete button*/
+#delete-btn {
+	margin: 15px;
+}
+.btn-floating {
+	background-color: #F44336;
+}
+.btn-floating:hover, .btn-floating:focus {
+    background-color: #D32F2F;
 }
 
 /*footer*/
 footer.page-footer {
     background-color: #F44336;
-}
-#footer-row {
-	margin-bottom: 0px;
 }
 /*icons in footer from font-awesome*/
 .fa {

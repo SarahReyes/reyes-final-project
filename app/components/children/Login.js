@@ -2,52 +2,22 @@
 var React = require('react');
 
 var Login = React.createClass({
-	getInitialState: function() {
-		return ({username: "", email: "", password: "", login: "login"});
-	},
-	handleUsernameChange: function(event) {
-		// set the state as we receive the value
-		this.setState({username: event.target.value});
-	},
-	handleEmailChange: function(event) {
-		// set the state as we receive the value
-		this.setState({email: event.target.value});
-	},
-	handlePasswordChange: function(event) {
-		// set the state as we receive the value
-		this.setState({password: event.target.value});
-	},
-	handleLogin: function() {
-		console.log("Username: " + this.state.username);
-		console.log("Email: " + this.state.email);
-		console.log("Password: " + this.state.password);
 
-		// grab the inputs and assign them to a new variable
-		var usernameInput = this.state.username;
-		var emailInput = this.state.email;
-		var passwordInput = this.state.password;
-		// pass the grabLoginUsernameInput, the username value
-		this.props.grabLoginUsernameInput(usernameInput);
-		// not sure we need this anymore!
-		// this.props.setLogin(usernameInput, emailInput, passwordInput);
-		// clear out the form
-		this.setState({username: ""});
-		this.setState({email: ""});
-		this.setState({password: ""});
 
-		// set the state of the login to the username
-		this.setState({login: "Welcome, " + this.state.username});
-	},
 	render: function () {
 		return (
 			<div>
 				<nav>
-				  <div className="nav-wrapper">
-					<a href="#" className="brand-logo">roughcut</a>
-					<ul id="nav-mobile" className="right hide-on-med-and-down">
-					  <li><a href="#modal1" id="login">{this.state.login}</a></li>
-					</ul>
-				  </div>
+					<div className="nav-wrapper">
+						<a href="#" className="brand-logo">roughcut</a>
+						<a href="#" data-activates="mobile-demo" className="button-collapse"><i className="material-icons">menu</i></a>
+						<ul id="nav-mobile" className="right hide-on-med-and-down">
+						    <li><a href="#modal1" id="login">{this.state.login}</a></li>
+						</ul>
+						<ul className="side-nav" id="mobile-demo">
+							<li><a href="#modal1" id="login">{this.state.login}</a></li>
+						</ul>
+					</div>
 				</nav>
 				<div id="modal1" className="modal">
 					<div className="row">

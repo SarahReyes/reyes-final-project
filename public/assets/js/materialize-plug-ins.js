@@ -1,13 +1,10 @@
 
 // materialize plug-ins
-
-// scrollspy for smooth scrolling
 $(document).ready(function(){
+	// scrollspy for smooth scrolling
     $('.scrollspy').scrollSpy();
-  });
-
-// login modal
-$(document).ready(function(){
+	// side nav bar
+	$(".button-collapse").sideNav();
 	// the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
 	$('.modal').modal();
 });
