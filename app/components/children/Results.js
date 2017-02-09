@@ -1,12 +1,8 @@
 
+// Results component
 var React = require('react');
 
-var Search = require('./Search');
-var Saved = require('./Saved');
 var Main = require('../Main');
-
-var mlab = require('../utils/mlab-db');
-
 
 var Results = React.createClass({
 	showContent: function(error, resultMovie, year, overview, poster) {
@@ -44,7 +40,7 @@ var Results = React.createClass({
 	},
     render: function() {
         return (
-			<div className="container">
+			<div className="center-align">
 				{this.showContent(this.props.error, this.props.resultMovie, this.props.year, this.props.overview, this.props.poster)}
 			</div>
 		);

@@ -1,16 +1,10 @@
 
 
 // Saved component
-
 var React = require('react');
 var util = require('util');
 
-var Results = require('./Results');
-var Saved = require('./Saved');
 var Main = require('../Main');
-
-var mlab = require('../utils/mlab-db');
-
 
 var Saved = React.createClass({
 	showSavedMap: function (saved) {
@@ -33,12 +27,10 @@ var Saved = React.createClass({
 	},
 	render: function(){
 		return (
-			<div className="container">
-				<div className="row section scrollspy" id="saved-row">
-					<div className="col s12 center-align">
-						<h1>My Collection</h1>
-						{this.showSavedMap(this.props.saved)}
-					</div>
+			<div className="row section scrollspy" id="saved-row">
+				<div className="col s12 center-align">
+					<h1>My Collection</h1>
+					{this.showSavedMap(this.props.saved)}
 				</div>
 			</div>
 		);

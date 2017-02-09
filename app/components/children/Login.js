@@ -1,9 +1,8 @@
 
 var React = require('react');
+var Main = require('../Main');
 
 var Login = React.createClass({
-
-
 	render: function () {
 		return (
 			<div>
@@ -12,36 +11,36 @@ var Login = React.createClass({
 						<a href="#" className="brand-logo">roughcut</a>
 						<a href="#" data-activates="mobile-demo" className="button-collapse"><i className="material-icons">menu</i></a>
 						<ul id="nav-mobile" className="right hide-on-med-and-down">
-						    <li><a href="#modal1" id="login">{this.state.login}</a></li>
+						    <li><a href="#modal1" id="login">{this.props.login}</a></li>
 						</ul>
 						<ul className="side-nav" id="mobile-demo">
-							<li><a href="#modal1" id="login">{this.state.login}</a></li>
+							<li><a href="#modal1" id="login">{this.props.login}</a></li>
 						</ul>
 					</div>
 				</nav>
 				<div id="modal1" className="modal">
 					<div className="row">
-						<form className="col s12" id="loginInputs" onSubmit={this.handleLogin}>
+						<form className="col s12" id="loginInputs" onSubmit={this.props.handleLogin}>
 							<h3>login</h3>
 							<div className="row">
 								<div className="input-field col s12">
-									<input value={this.state.username} type="text" id="user_name" className="validate" onChange={this.handleUsernameChange} />
+									<input value={this.props.username} type="text" id="user_name" className="validate" onChange={this.props.handleUsernameChange} />
 									<label htmlFor="user_name">user name</label>
 								</div>
 							</div>
 							<div className="row">
 								<div className="input-field col s12">
-									<input value={this.state.email} type="email" id="email" className="validate" onChange={this.handleEmailChange} />
-									<label htmlFor="email" data-error="wrong" data-success="right">email</label>
+									<input value={this.props.email} type="email" id="email" className="validate" onChange={this.props.handleEmailChange} />
+									<label htmlFor="email" data-error="please enter a correct email address" data-success="">email</label>
 								</div>
 							</div>
 							<div className="row">
 								<div className="input-field col s12">
-									<input value={this.state.password} type="password" id="password" className="validate" onChange={this.handlePasswordChange} />
+									<input value={this.props.password} type="password" id="password" className="validate" onChange={this.props.handlePasswordChange} />
 									<label htmlFor="password">password</label>
 								</div>
 							</div>
-							<button type="button" className="modal-action modal-close waves-effect waves-light btn" onClick={this.handleLogin}>submit</button>
+							<button type="button" className="modal-action modal-close waves-effect waves-light btn" onClick={this.props.handleLogin}>submit</button>
 						</form>
 					</div>
 				</div>

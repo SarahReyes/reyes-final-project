@@ -147,10 +147,13 @@ var Main = React.createClass({
 	},
 	render: function() {
 		return (
-
-			<div className="container page-flexbox-wrapper">
+			<div>
 				<header>
 					<Login
+						login={this.state.login}
+						username={this.state.username}
+						email={this.state.email}
+						password={this.state.password}
 						handleUsernameChange={this.handleUsernameChange}
 						handleEmailChange={this.handleEmailChange}
 						handlePasswordChange={this.handlePasswordChange}
@@ -160,6 +163,8 @@ var Main = React.createClass({
 				</header>
 
 				<main>
+					<div id="film-img"></div>
+
 	                <Search
 						handleSearchSubmit={this.handleSearchSubmit}
 						handleSearchChange={this.handleSearchChange}
@@ -184,7 +189,6 @@ var Main = React.createClass({
 				</main>
 
 				<footer className="page-footer">
-					<div className="container">
 					    <div className="row" id="footer-row">
 						    <div className="col s6 left-align">
 						    	<h5 className="white-text" id="footer-name">created by: Sarah Reyes</h5>
@@ -194,9 +198,8 @@ var Main = React.createClass({
 								<a href="https://www.linkedin.com/in/sarah-reyes"><i className="fa fa-linkedin fa-2x"  id="footer-icons" aria-hidden="true"></i></a>
 							</div>
 						</div>
-					</div>
 					<div className="footer-copyright">
-						<div className="container center-align">
+						<div className="center-align">
 							© 2017 copyright roughcut
 						</div>
 					</div>
