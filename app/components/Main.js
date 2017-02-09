@@ -163,7 +163,31 @@ var Main = React.createClass({
 				</header>
 
 				<main>
-					<div id="film-img"></div>
+					<div className="slider">
+						<ul className="slides">
+							<li>
+							  	<img src="../../assets/images/film-01.jpg" />
+							  	<div className="caption center-align">
+									<h3>Search for your favorite movies.</h3>
+									<h5 className="light grey-text text-lighten-3">Search by title to see any film.</h5>
+							  	</div>
+							</li>
+							<li>
+							  	<img src="../../assets/images/popcorn-01.jpeg" />
+							  	<div className="caption left-align">
+									<h3>Save to your collection.</h3>
+									<h5 className="light grey-text text-lighten-3">Create a collection of all your favorites.</h5>
+							  	</div>
+							</li>
+							<li>
+							  	<img src="../../assets/images/film-reel-01.jpg" />
+							  	<div className="caption right-align">
+									<h3>Share with your friends.</h3>
+									<h5 className="light grey-text text-lighten-3">Share your favorite movies on Twitter.</h5>
+							  	</div>
+							</li>
+						</ul>
+					</div>
 
 	                <Search
 						handleSearchSubmit={this.handleSearchSubmit}

@@ -18,7 +18,6 @@ var Saved = React.createClass({
 						this.props.deleteSaved(search.movieId);
 					}}>
 						<i className="fa fa-trash-o fa-2x" aria-hidden="true"></i>
-						delete
 					</button>
 				</div>
 			);
