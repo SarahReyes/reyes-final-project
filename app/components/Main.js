@@ -168,22 +168,22 @@ var Main = React.createClass({
 							<li>
 							  	<img src="../../assets/images/film-01.jpg" />
 							  	<div className="caption center-align">
-									<h3>Search for your favorite movies.</h3>
-									<h5 className="light grey-text text-lighten-3">Search by title to see any film.</h5>
+									<h1 id="slider-text">Search.</h1>
+									<h5 className="light grey-text text-lighten-3" id="slider-text-small">Search for a movie by title.</h5>
 							  	</div>
 							</li>
 							<li>
 							  	<img src="../../assets/images/popcorn-01.jpeg" />
 							  	<div className="caption left-align">
-									<h3>Save to your collection.</h3>
-									<h5 className="light grey-text text-lighten-3">Create a collection of all your favorites.</h5>
+									<h1 id="slider-text">Save.</h1>
+									<h5 className="light grey-text text-lighten-3" id="slider-text-small">Create a collection of all your favorites.</h5>
 							  	</div>
 							</li>
 							<li>
-							  	<img src="../../assets/images/film-reel-01.jpg" />
+							  	<img src="../../assets/images/theater-01.jpg" />
 							  	<div className="caption right-align">
-									<h3>Share with your friends.</h3>
-									<h5 className="light grey-text text-lighten-3">Share your favorite movies on Twitter.</h5>
+									<h1 id="slider-text">Share.</h1>
+									<h5 className="light grey-text text-lighten-3" id="slider-text-small">Share your favorite movies on Twitter.</h5>
 							  	</div>
 							</li>
 						</ul>

@@ -71,17 +71,18 @@ nav .brand-logo {
 .slider .indicators .indicator-item.active {
 	background-color: #F44336;
 }
-.slider h3 {
+#slider-text {
+	background-color:rgba(255, 255, 255, 0.6);
 	font-weight: 600;
-	font-size: 50px;
 	color: #212121;
-	font-family: 'Hind', sans-serif;
+	padding: 10px 10px 0px 10px;
+	margin: 0px;
 }
-.slider h5 {
+#slider-text-small {
+	background-color:rgba(0, 0, 0, 0.6);
 	font-weight: 600;
-	font-size: 30px;
-	color: #212121;
-	font-family: 'Hind', sans-serif;
+	color: #FFF;
+	padding: 5px 10px 0px 10px;
 }
 
 /*movie search row*/
