@@ -172,6 +172,9 @@ h4 {
 	font-size: 32px;
 	margin-top: 0px;
 }
+#saved-row h1 {
+	border-bottom: 3px solid #F44336;
+}
 #saved-row li {
 	font-size: 32px;
 }
