@@ -17,7 +17,9 @@ var Saved = React.createClass({
 						type="button"
 						className="btn-floating btn-large waves-effect waves-light"
 						id="delete-btn"
-						onClick={function() {this.props.deleteSaved(search.movieId);}}>
+						onClick={this.props.deleteSaved(search.movieId)}>
+						{/* onClick={function() {this.props.deleteSaved(search.movieId);}}> */}
+
 						<i className="fa fa-trash-o fa-2x" aria-hidden="true"></i>
 					</button>
 				</div>

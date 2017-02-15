@@ -21,7 +21,13 @@ var Results = React.createClass({
 								<img className="responsive-img" src={poster} />
 							</div>
 							<div className="row center-align">
-								<button type="submit" className="waves-effect waves-light btn-large btn"  id="save-share-btn" onClick={this.props.onSaveClick}><i className="fa fa-floppy-o fa-2x" id="save-icon"></i>save</button>
+								<button
+									type="submit"
+									className="waves-effect waves-light btn-large btn"
+									id="save-share-btn"
+									onClick={this.props.onSaveClick}>
+									<i className="fa fa-floppy-o fa-2x" id="save-icon"></i>save
+								</button>
 								<a href="https://twitter.com/share" className="twitter-share-button waves-effect waves-light btn-large btn"  id="save-share-btn" data-show-count="false"><i className="fa fa-twitter fa-2x" id="twitter-icon"></i>share</a><script async src="//platform.twitter.com/widgets.js" charSet="utf-8"></script>
 							</div>
 
